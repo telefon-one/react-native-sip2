@@ -3,7 +3,7 @@ exit 0
 
 set -e
 
-VERSION="2.7.1.jni"
+VERSION="v2.7.1.jni"
 URL="https://github.com/telefon-one/react-native-pjsip-builder/archive/${VERSION}.tar.gz"
 LOCK=".libs.lock"
 DEST=".libs.tar.gz"
