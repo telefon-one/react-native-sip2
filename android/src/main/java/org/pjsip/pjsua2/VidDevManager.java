@@ -47,10 +47,6 @@ public class VidDevManager {
     return new VideoDevInfoVector(pjsua2JNI.VidDevManager_enumDev(swigCPtr, this), false);
   }
 
-  public VideoDevInfoVector2 enumDev2() throws java.lang.Exception {
-    return new VideoDevInfoVector2(pjsua2JNI.VidDevManager_enumDev2(swigCPtr, this), true);
-  }
-
   public int lookupDev(String drv_name, String dev_name) throws java.lang.Exception {
     return pjsua2JNI.VidDevManager_lookupDev(swigCPtr, this, drv_name, dev_name);
   }

@@ -110,13 +110,13 @@ public class SslCertInfo {
     return pjsua2JNI.SslCertInfo_validityGmt_get(swigCPtr, this);
   }
 
-  public void setSubjectAltName(SslCertNameVector value) {
-    pjsua2JNI.SslCertInfo_subjectAltName_set(swigCPtr, this, SslCertNameVector.getCPtr(value), value);
+  public void setSubjectAltName(SWIGTYPE_p_vectorT_pj__SslCertName_t value) {
+    pjsua2JNI.SslCertInfo_subjectAltName_set(swigCPtr, this, SWIGTYPE_p_vectorT_pj__SslCertName_t.getCPtr(value));
   }
 
-  public SslCertNameVector getSubjectAltName() {
+  public SWIGTYPE_p_vectorT_pj__SslCertName_t getSubjectAltName() {
     long cPtr = pjsua2JNI.SslCertInfo_subjectAltName_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SslCertNameVector(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_vectorT_pj__SslCertName_t(cPtr, false);
   }
 
   public void setRaw(String value) {

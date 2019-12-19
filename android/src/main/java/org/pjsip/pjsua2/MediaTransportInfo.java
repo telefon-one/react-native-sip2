@@ -35,22 +35,6 @@ public class MediaTransportInfo {
     }
   }
 
-  public void setLocalRtpName(String value) {
-    pjsua2JNI.MediaTransportInfo_localRtpName_set(swigCPtr, this, value);
-  }
-
-  public String getLocalRtpName() {
-    return pjsua2JNI.MediaTransportInfo_localRtpName_get(swigCPtr, this);
-  }
-
-  public void setLocalRtcpName(String value) {
-    pjsua2JNI.MediaTransportInfo_localRtcpName_set(swigCPtr, this, value);
-  }
-
-  public String getLocalRtcpName() {
-    return pjsua2JNI.MediaTransportInfo_localRtcpName_get(swigCPtr, this);
-  }
-
   public void setSrcRtpName(String value) {
     pjsua2JNI.MediaTransportInfo_srcRtpName_set(swigCPtr, this, value);
   }

@@ -18,8 +18,6 @@ public final class pjmedia_event_type {
   public final static pjmedia_event_type PJMEDIA_EVENT_KEYFRAME_FOUND = new pjmedia_event_type("PJMEDIA_EVENT_KEYFRAME_FOUND", pjsua2JNI.PJMEDIA_EVENT_KEYFRAME_FOUND_get());
   public final static pjmedia_event_type PJMEDIA_EVENT_KEYFRAME_MISSING = new pjmedia_event_type("PJMEDIA_EVENT_KEYFRAME_MISSING", pjsua2JNI.PJMEDIA_EVENT_KEYFRAME_MISSING_get());
   public final static pjmedia_event_type PJMEDIA_EVENT_ORIENT_CHANGED = new pjmedia_event_type("PJMEDIA_EVENT_ORIENT_CHANGED", pjsua2JNI.PJMEDIA_EVENT_ORIENT_CHANGED_get());
-  public final static pjmedia_event_type PJMEDIA_EVENT_RX_RTCP_FB = new pjmedia_event_type("PJMEDIA_EVENT_RX_RTCP_FB", pjsua2JNI.PJMEDIA_EVENT_RX_RTCP_FB_get());
-  public final static pjmedia_event_type PJMEDIA_EVENT_AUD_DEV_ERROR = new pjmedia_event_type("PJMEDIA_EVENT_AUD_DEV_ERROR", pjsua2JNI.PJMEDIA_EVENT_AUD_DEV_ERROR_get());
 
   public final int swigValue() {
     return swigValue;
@@ -55,7 +53,7 @@ public final class pjmedia_event_type {
     swigNext = this.swigValue+1;
   }
 
-  private static pjmedia_event_type[] swigValues = { PJMEDIA_EVENT_NONE, PJMEDIA_EVENT_FMT_CHANGED, PJMEDIA_EVENT_WND_CLOSING, PJMEDIA_EVENT_WND_CLOSED, PJMEDIA_EVENT_WND_RESIZED, PJMEDIA_EVENT_MOUSE_BTN_DOWN, PJMEDIA_EVENT_KEYFRAME_FOUND, PJMEDIA_EVENT_KEYFRAME_MISSING, PJMEDIA_EVENT_ORIENT_CHANGED, PJMEDIA_EVENT_RX_RTCP_FB, PJMEDIA_EVENT_AUD_DEV_ERROR };
+  private static pjmedia_event_type[] swigValues = { PJMEDIA_EVENT_NONE, PJMEDIA_EVENT_FMT_CHANGED, PJMEDIA_EVENT_WND_CLOSING, PJMEDIA_EVENT_WND_CLOSED, PJMEDIA_EVENT_WND_RESIZED, PJMEDIA_EVENT_MOUSE_BTN_DOWN, PJMEDIA_EVENT_KEYFRAME_FOUND, PJMEDIA_EVENT_KEYFRAME_MISSING, PJMEDIA_EVENT_ORIENT_CHANGED };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

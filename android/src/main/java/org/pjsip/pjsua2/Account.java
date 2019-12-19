@@ -63,10 +63,6 @@ public class Account {
     pjsua2JNI.Account_create__SWIG_1(swigCPtr, this, AccountConfig.getCPtr(cfg), cfg);
   }
 
-  public void shutdown() {
-    pjsua2JNI.Account_shutdown(swigCPtr, this);
-  }
-
   public void modify(AccountConfig cfg) throws java.lang.Exception {
     pjsua2JNI.Account_modify(swigCPtr, this, AccountConfig.getCPtr(cfg), cfg);
   }
@@ -116,10 +112,6 @@ public class Account {
     return new BuddyVector(pjsua2JNI.Account_enumBuddies(swigCPtr, this), false);
   }
 
-  public BuddyVector2 enumBuddies2() throws java.lang.Exception {
-    return new BuddyVector2(pjsua2JNI.Account_enumBuddies2(swigCPtr, this), true);
-  }
-
   public Buddy findBuddy(String uri, FindBuddyMatch buddy_match) throws java.lang.Exception {
     long cPtr = pjsua2JNI.Account_findBuddy__SWIG_0(swigCPtr, this, uri, FindBuddyMatch.getCPtr(buddy_match), buddy_match);
     return (cPtr == 0) ? null : new Buddy(cPtr, false);
@@ -130,8 +122,12 @@ public class Account {
     return (cPtr == 0) ? null : new Buddy(cPtr, false);
   }
 
-  public Buddy findBuddy2(String uri) throws java.lang.Exception {
-    return new Buddy(pjsua2JNI.Account_findBuddy2(swigCPtr, this, uri), true);
+  public void addBuddy(Buddy buddy) {
+    pjsua2JNI.Account_addBuddy(swigCPtr, this, Buddy.getCPtr(buddy), buddy);
+  }
+
+  public void removeBuddy(Buddy buddy) {
+    pjsua2JNI.Account_removeBuddy(swigCPtr, this, Buddy.getCPtr(buddy), buddy);
   }
 
   public void onIncomingCall(OnIncomingCallParam prm) {

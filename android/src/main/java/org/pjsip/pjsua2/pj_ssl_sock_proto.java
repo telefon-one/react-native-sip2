@@ -16,7 +16,6 @@ public final class pj_ssl_sock_proto {
   public final static pj_ssl_sock_proto PJ_SSL_SOCK_PROTO_TLS1_1 = new pj_ssl_sock_proto("PJ_SSL_SOCK_PROTO_TLS1_1", pjsua2JNI.PJ_SSL_SOCK_PROTO_TLS1_1_get());
   public final static pj_ssl_sock_proto PJ_SSL_SOCK_PROTO_TLS1_2 = new pj_ssl_sock_proto("PJ_SSL_SOCK_PROTO_TLS1_2", pjsua2JNI.PJ_SSL_SOCK_PROTO_TLS1_2_get());
   public final static pj_ssl_sock_proto PJ_SSL_SOCK_PROTO_SSL23 = new pj_ssl_sock_proto("PJ_SSL_SOCK_PROTO_SSL23", pjsua2JNI.PJ_SSL_SOCK_PROTO_SSL23_get());
-  public final static pj_ssl_sock_proto PJ_SSL_SOCK_PROTO_ALL = new pj_ssl_sock_proto("PJ_SSL_SOCK_PROTO_ALL", pjsua2JNI.PJ_SSL_SOCK_PROTO_ALL_get());
   public final static pj_ssl_sock_proto PJ_SSL_SOCK_PROTO_DTLS1 = new pj_ssl_sock_proto("PJ_SSL_SOCK_PROTO_DTLS1", pjsua2JNI.PJ_SSL_SOCK_PROTO_DTLS1_get());
 
   public final int swigValue() {
@@ -53,7 +52,7 @@ public final class pj_ssl_sock_proto {
     swigNext = this.swigValue+1;
   }
 
-  private static pj_ssl_sock_proto[] swigValues = { PJ_SSL_SOCK_PROTO_DEFAULT, PJ_SSL_SOCK_PROTO_SSL2, PJ_SSL_SOCK_PROTO_SSL3, PJ_SSL_SOCK_PROTO_TLS1, PJ_SSL_SOCK_PROTO_TLS1_1, PJ_SSL_SOCK_PROTO_TLS1_2, PJ_SSL_SOCK_PROTO_SSL23, PJ_SSL_SOCK_PROTO_ALL, PJ_SSL_SOCK_PROTO_DTLS1 };
+  private static pj_ssl_sock_proto[] swigValues = { PJ_SSL_SOCK_PROTO_DEFAULT, PJ_SSL_SOCK_PROTO_SSL2, PJ_SSL_SOCK_PROTO_SSL3, PJ_SSL_SOCK_PROTO_TLS1, PJ_SSL_SOCK_PROTO_TLS1_1, PJ_SSL_SOCK_PROTO_TLS1_2, PJ_SSL_SOCK_PROTO_SSL23, PJ_SSL_SOCK_PROTO_DTLS1 };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

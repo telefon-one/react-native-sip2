@@ -15,7 +15,6 @@ public final class pjsua_call_flag {
   public final static pjsua_call_flag PJSUA_CALL_NO_SDP_OFFER = new pjsua_call_flag("PJSUA_CALL_NO_SDP_OFFER", pjsua2JNI.PJSUA_CALL_NO_SDP_OFFER_get());
   public final static pjsua_call_flag PJSUA_CALL_REINIT_MEDIA = new pjsua_call_flag("PJSUA_CALL_REINIT_MEDIA", pjsua2JNI.PJSUA_CALL_REINIT_MEDIA_get());
   public final static pjsua_call_flag PJSUA_CALL_UPDATE_VIA = new pjsua_call_flag("PJSUA_CALL_UPDATE_VIA", pjsua2JNI.PJSUA_CALL_UPDATE_VIA_get());
-  public final static pjsua_call_flag PJSUA_CALL_UPDATE_TARGET = new pjsua_call_flag("PJSUA_CALL_UPDATE_TARGET", pjsua2JNI.PJSUA_CALL_UPDATE_TARGET_get());
 
   public final int swigValue() {
     return swigValue;
@@ -51,7 +50,7 @@ public final class pjsua_call_flag {
     swigNext = this.swigValue+1;
   }
 
-  private static pjsua_call_flag[] swigValues = { PJSUA_CALL_UNHOLD, PJSUA_CALL_UPDATE_CONTACT, PJSUA_CALL_INCLUDE_DISABLED_MEDIA, PJSUA_CALL_NO_SDP_OFFER, PJSUA_CALL_REINIT_MEDIA, PJSUA_CALL_UPDATE_VIA, PJSUA_CALL_UPDATE_TARGET };
+  private static pjsua_call_flag[] swigValues = { PJSUA_CALL_UNHOLD, PJSUA_CALL_UPDATE_CONTACT, PJSUA_CALL_INCLUDE_DISABLED_MEDIA, PJSUA_CALL_NO_SDP_OFFER, PJSUA_CALL_REINIT_MEDIA, PJSUA_CALL_UPDATE_VIA };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

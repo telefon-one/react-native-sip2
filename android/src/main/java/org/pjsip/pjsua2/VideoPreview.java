@@ -55,8 +55,4 @@ public class VideoPreview {
     return new VideoWindow(pjsua2JNI.VideoPreview_getVideoWindow(swigCPtr, this), true);
   }
 
-  public VideoMedia getVideoMedia() throws java.lang.Exception {
-    return new VideoMedia(pjsua2JNI.VideoPreview_getVideoMedia(swigCPtr, this), true);
-  }
-
 }

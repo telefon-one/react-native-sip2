@@ -59,10 +59,6 @@ public class AudDevManager {
     return new AudioDevInfoVector(pjsua2JNI.AudDevManager_enumDev(swigCPtr, this), false);
   }
 
-  public AudioDevInfoVector2 enumDev2() throws java.lang.Exception {
-    return new AudioDevInfoVector2(pjsua2JNI.AudDevManager_enumDev2(swigCPtr, this), true);
-  }
-
   public void setNullDev() throws java.lang.Exception {
     pjsua2JNI.AudDevManager_setNullDev(swigCPtr, this);
   }

@@ -35,28 +35,12 @@ public class OnDtmfDigitParam {
     }
   }
 
-  public void setMethod(pjsua_dtmf_method value) {
-    pjsua2JNI.OnDtmfDigitParam_method_set(swigCPtr, this, value.swigValue());
-  }
-
-  public pjsua_dtmf_method getMethod() {
-    return pjsua_dtmf_method.swigToEnum(pjsua2JNI.OnDtmfDigitParam_method_get(swigCPtr, this));
-  }
-
   public void setDigit(String value) {
     pjsua2JNI.OnDtmfDigitParam_digit_set(swigCPtr, this, value);
   }
 
   public String getDigit() {
     return pjsua2JNI.OnDtmfDigitParam_digit_get(swigCPtr, this);
-  }
-
-  public void setDuration(long value) {
-    pjsua2JNI.OnDtmfDigitParam_duration_set(swigCPtr, this, value);
-  }
-
-  public long getDuration() {
-    return pjsua2JNI.OnDtmfDigitParam_duration_get(swigCPtr, this);
   }
 
   public OnDtmfDigitParam() {

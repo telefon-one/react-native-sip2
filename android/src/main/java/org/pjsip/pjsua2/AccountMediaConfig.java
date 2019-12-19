@@ -76,38 +76,12 @@ public class AccountMediaConfig extends PersistentObject {
     return pjsua2JNI.AccountMediaConfig_srtpSecureSignaling_get(swigCPtr, this);
   }
 
-  public void setSrtpOpt(SrtpOpt value) {
-    pjsua2JNI.AccountMediaConfig_srtpOpt_set(swigCPtr, this, SrtpOpt.getCPtr(value), value);
-  }
-
-  public SrtpOpt getSrtpOpt() {
-    long cPtr = pjsua2JNI.AccountMediaConfig_srtpOpt_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SrtpOpt(cPtr, false);
-  }
-
   public void setIpv6Use(pjsua_ipv6_use value) {
     pjsua2JNI.AccountMediaConfig_ipv6Use_set(swigCPtr, this, value.swigValue());
   }
 
   public pjsua_ipv6_use getIpv6Use() {
     return pjsua_ipv6_use.swigToEnum(pjsua2JNI.AccountMediaConfig_ipv6Use_get(swigCPtr, this));
-  }
-
-  public void setRtcpMuxEnabled(boolean value) {
-    pjsua2JNI.AccountMediaConfig_rtcpMuxEnabled_set(swigCPtr, this, value);
-  }
-
-  public boolean getRtcpMuxEnabled() {
-    return pjsua2JNI.AccountMediaConfig_rtcpMuxEnabled_get(swigCPtr, this);
-  }
-
-  public void setRtcpFbConfig(RtcpFbConfig value) {
-    pjsua2JNI.AccountMediaConfig_rtcpFbConfig_set(swigCPtr, this, RtcpFbConfig.getCPtr(value), value);
-  }
-
-  public RtcpFbConfig getRtcpFbConfig() {
-    long cPtr = pjsua2JNI.AccountMediaConfig_rtcpFbConfig_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new RtcpFbConfig(cPtr, false);
   }
 
   public void readObject(ContainerNode node) throws java.lang.Exception {

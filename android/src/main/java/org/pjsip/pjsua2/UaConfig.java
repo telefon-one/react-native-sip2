@@ -68,15 +68,6 @@ public class UaConfig extends PersistentObject {
     return (cPtr == 0) ? null : new StringVector(cPtr, false);
   }
 
-  public void setOutboundProxies(StringVector value) {
-    pjsua2JNI.UaConfig_outboundProxies_set(swigCPtr, this, StringVector.getCPtr(value), value);
-  }
-
-  public StringVector getOutboundProxies() {
-    long cPtr = pjsua2JNI.UaConfig_outboundProxies_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new StringVector(cPtr, false);
-  }
-
   public void setUserAgent(String value) {
     pjsua2JNI.UaConfig_userAgent_set(swigCPtr, this, value);
   }

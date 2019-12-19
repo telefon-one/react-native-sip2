@@ -226,14 +226,6 @@ public class Endpoint {
     return new AudioMediaVector(pjsua2JNI.Endpoint_mediaEnumPorts(swigCPtr, this), false);
   }
 
-  public AudioMediaVector2 mediaEnumPorts2() throws java.lang.Exception {
-    return new AudioMediaVector2(pjsua2JNI.Endpoint_mediaEnumPorts2(swigCPtr, this), true);
-  }
-
-  public VideoMediaVector mediaEnumVidPorts() throws java.lang.Exception {
-    return new VideoMediaVector(pjsua2JNI.Endpoint_mediaEnumVidPorts(swigCPtr, this), true);
-  }
-
   public AudDevManager audDevManager() {
     return new AudDevManager(pjsua2JNI.Endpoint_audDevManager(swigCPtr, this), false);
   }
@@ -244,10 +236,6 @@ public class Endpoint {
 
   public CodecInfoVector codecEnum() throws java.lang.Exception {
     return new CodecInfoVector(pjsua2JNI.Endpoint_codecEnum(swigCPtr, this), false);
-  }
-
-  public CodecInfoVector2 codecEnum2() throws java.lang.Exception {
-    return new CodecInfoVector2(pjsua2JNI.Endpoint_codecEnum2(swigCPtr, this), true);
   }
 
   public void codecSetPriority(String codec_id, short priority) throws java.lang.Exception {
@@ -266,10 +254,6 @@ public class Endpoint {
     return new CodecInfoVector(pjsua2JNI.Endpoint_videoCodecEnum(swigCPtr, this), false);
   }
 
-  public CodecInfoVector2 videoCodecEnum2() throws java.lang.Exception {
-    return new CodecInfoVector2(pjsua2JNI.Endpoint_videoCodecEnum2(swigCPtr, this), true);
-  }
-
   public void videoCodecSetPriority(String codec_id, short priority) throws java.lang.Exception {
     pjsua2JNI.Endpoint_videoCodecSetPriority(swigCPtr, this, codec_id, priority);
   }
@@ -284,10 +268,6 @@ public class Endpoint {
 
   public void resetVideoCodecParam(String codec_id) throws java.lang.Exception {
     pjsua2JNI.Endpoint_resetVideoCodecParam(swigCPtr, this, codec_id);
-  }
-
-  public StringVector srtpCryptoEnum() throws java.lang.Exception {
-    return new StringVector(pjsua2JNI.Endpoint_srtpCryptoEnum(swigCPtr, this), true);
   }
 
   public void handleIpChange(IpChangeParam param) throws java.lang.Exception {
@@ -316,10 +296,6 @@ public class Endpoint {
 
   public void onIpChangeProgress(OnIpChangeProgressParam prm) {
     if (getClass() == Endpoint.class) pjsua2JNI.Endpoint_onIpChangeProgress(swigCPtr, this, OnIpChangeProgressParam.getCPtr(prm), prm); else pjsua2JNI.Endpoint_onIpChangeProgressSwigExplicitEndpoint(swigCPtr, this, OnIpChangeProgressParam.getCPtr(prm), prm);
-  }
-
-  public void onMediaEvent(OnMediaEventParam prm) {
-    if (getClass() == Endpoint.class) pjsua2JNI.Endpoint_onMediaEvent(swigCPtr, this, OnMediaEventParam.getCPtr(prm), prm); else pjsua2JNI.Endpoint_onMediaEventSwigExplicitEndpoint(swigCPtr, this, OnMediaEventParam.getCPtr(prm), prm);
   }
 
 }

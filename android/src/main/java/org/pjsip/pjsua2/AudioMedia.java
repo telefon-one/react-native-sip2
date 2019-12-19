@@ -51,10 +51,6 @@ public class AudioMedia extends Media {
     pjsua2JNI.AudioMedia_startTransmit(swigCPtr, this, AudioMedia.getCPtr(sink), sink);
   }
 
-  public void startTransmit2(AudioMedia sink, AudioMediaTransmitParam param) throws java.lang.Exception {
-    pjsua2JNI.AudioMedia_startTransmit2(swigCPtr, this, AudioMedia.getCPtr(sink), sink, AudioMediaTransmitParam.getCPtr(param), param);
-  }
-
   public void stopTransmit(AudioMedia sink) throws java.lang.Exception {
     pjsua2JNI.AudioMedia_stopTransmit(swigCPtr, this, AudioMedia.getCPtr(sink), sink);
   }
@@ -78,10 +74,6 @@ public class AudioMedia extends Media {
   public static AudioMedia typecastFromMedia(Media media) {
     long cPtr = pjsua2JNI.AudioMedia_typecastFromMedia(Media.getCPtr(media), media);
     return (cPtr == 0) ? null : new AudioMedia(cPtr, false);
-  }
-
-  public AudioMedia() {
-    this(pjsua2JNI.new_AudioMedia(), true);
   }
 
 }

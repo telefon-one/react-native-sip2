@@ -44,15 +44,6 @@ public class MediaEventData {
     return (cPtr == 0) ? null : new MediaFmtChangedEvent(cPtr, false);
   }
 
-  public void setAudDevError(AudDevErrorEvent value) {
-    pjsua2JNI.MediaEventData_audDevError_set(swigCPtr, this, AudDevErrorEvent.getCPtr(value), value);
-  }
-
-  public AudDevErrorEvent getAudDevError() {
-    long cPtr = pjsua2JNI.MediaEventData_audDevError_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new AudDevErrorEvent(cPtr, false);
-  }
-
   public void setPtr(SWIGTYPE_p_void value) {
     pjsua2JNI.MediaEventData_ptr_set(swigCPtr, this, SWIGTYPE_p_void.getCPtr(value));
   }

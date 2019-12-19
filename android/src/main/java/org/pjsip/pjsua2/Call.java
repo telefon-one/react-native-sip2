@@ -86,18 +86,6 @@ public class Call {
     return (cPtr == 0) ? null : new Media(cPtr, false);
   }
 
-  public AudioMedia getAudioMedia(int med_idx) throws java.lang.Exception {
-    return new AudioMedia(pjsua2JNI.Call_getAudioMedia(swigCPtr, this, med_idx), true);
-  }
-
-  public VideoMedia getEncodingVideoMedia(int med_idx) throws java.lang.Exception {
-    return new VideoMedia(pjsua2JNI.Call_getEncodingVideoMedia(swigCPtr, this, med_idx), true);
-  }
-
-  public VideoMedia getDecodingVideoMedia(int med_idx) throws java.lang.Exception {
-    return new VideoMedia(pjsua2JNI.Call_getDecodingVideoMedia(swigCPtr, this, med_idx), true);
-  }
-
   public pjsip_dialog_cap_status remoteHasCap(int htype, String hname, String token) {
     return pjsip_dialog_cap_status.swigToEnum(pjsua2JNI.Call_remoteHasCap(swigCPtr, this, htype, hname, token));
   }
@@ -153,10 +141,6 @@ public class Call {
 
   public void dialDtmf(String digits) throws java.lang.Exception {
     pjsua2JNI.Call_dialDtmf(swigCPtr, this, digits);
-  }
-
-  public void sendDtmf(CallSendDtmfParam param) throws java.lang.Exception {
-    pjsua2JNI.Call_sendDtmf(swigCPtr, this, CallSendDtmfParam.getCPtr(param), param);
   }
 
   public void sendInstantMessage(SendInstantMessageParam prm) throws java.lang.Exception {
@@ -253,10 +237,6 @@ public class Call {
 
   public void onCallRxOffer(OnCallRxOfferParam prm) {
     if (getClass() == Call.class) pjsua2JNI.Call_onCallRxOffer(swigCPtr, this, OnCallRxOfferParam.getCPtr(prm), prm); else pjsua2JNI.Call_onCallRxOfferSwigExplicitCall(swigCPtr, this, OnCallRxOfferParam.getCPtr(prm), prm);
-  }
-
-  public void onCallRxReinvite(OnCallRxReinviteParam prm) {
-    if (getClass() == Call.class) pjsua2JNI.Call_onCallRxReinvite(swigCPtr, this, OnCallRxReinviteParam.getCPtr(prm), prm); else pjsua2JNI.Call_onCallRxReinviteSwigExplicitCall(swigCPtr, this, OnCallRxReinviteParam.getCPtr(prm), prm);
   }
 
   public void onCallTxOffer(OnCallTxOfferParam prm) {

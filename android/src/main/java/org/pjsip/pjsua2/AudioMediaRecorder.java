@@ -39,12 +39,12 @@ public class AudioMediaRecorder extends AudioMedia {
     this(pjsua2JNI.new_AudioMediaRecorder(), true);
   }
 
-  public void createRecorder(String file_name, long enc_type, int max_size, long options) throws java.lang.Exception {
-    pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_0(swigCPtr, this, file_name, enc_type, max_size, options);
+  public void createRecorder(String file_name, long enc_type, SWIGTYPE_p_pj_ssize_t max_size, long options) throws java.lang.Exception {
+    pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_0(swigCPtr, this, file_name, enc_type, SWIGTYPE_p_pj_ssize_t.getCPtr(max_size), options);
   }
 
-  public void createRecorder(String file_name, long enc_type, int max_size) throws java.lang.Exception {
-    pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_1(swigCPtr, this, file_name, enc_type, max_size);
+  public void createRecorder(String file_name, long enc_type, SWIGTYPE_p_pj_ssize_t max_size) throws java.lang.Exception {
+    pjsua2JNI.AudioMediaRecorder_createRecorder__SWIG_1(swigCPtr, this, file_name, enc_type, SWIGTYPE_p_pj_ssize_t.getCPtr(max_size));
   }
 
   public void createRecorder(String file_name, long enc_type) throws java.lang.Exception {

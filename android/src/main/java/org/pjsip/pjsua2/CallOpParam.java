@@ -77,15 +77,6 @@ public class CallOpParam {
     return (cPtr == 0) ? null : new SipTxOption(cPtr, false);
   }
 
-  public void setSdp(SdpSession value) {
-    pjsua2JNI.CallOpParam_sdp_set(swigCPtr, this, SdpSession.getCPtr(value), value);
-  }
-
-  public SdpSession getSdp() {
-    long cPtr = pjsua2JNI.CallOpParam_sdp_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SdpSession(cPtr, false);
-  }
-
   public CallOpParam(boolean useDefaultCallSetting) {
     this(pjsua2JNI.new_CallOpParam__SWIG_0(useDefaultCallSetting), true);
   }

@@ -51,13 +51,13 @@ public class OnCreateMediaTransportSrtpParam {
     return pjmedia_srtp_use.swigToEnum(pjsua2JNI.OnCreateMediaTransportSrtpParam_srtpUse_get(swigCPtr, this));
   }
 
-  public void setCryptos(SrtpCryptoVector value) {
-    pjsua2JNI.OnCreateMediaTransportSrtpParam_cryptos_set(swigCPtr, this, SrtpCryptoVector.getCPtr(value), value);
+  public void setCryptos(SWIGTYPE_p_vectorT_pj__SrtpCrypto_t value) {
+    pjsua2JNI.OnCreateMediaTransportSrtpParam_cryptos_set(swigCPtr, this, SWIGTYPE_p_vectorT_pj__SrtpCrypto_t.getCPtr(value));
   }
 
-  public SrtpCryptoVector getCryptos() {
+  public SWIGTYPE_p_vectorT_pj__SrtpCrypto_t getCryptos() {
     long cPtr = pjsua2JNI.OnCreateMediaTransportSrtpParam_cryptos_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SrtpCryptoVector(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_vectorT_pj__SrtpCrypto_t(cPtr, false);
   }
 
   public OnCreateMediaTransportSrtpParam() {

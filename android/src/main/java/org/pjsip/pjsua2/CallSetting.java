@@ -67,8 +67,8 @@ public class CallSetting {
     return pjsua2JNI.CallSetting_videoCount_get(swigCPtr, this);
   }
 
-  public CallSetting(boolean useDefaultValues) {
-    this(pjsua2JNI.new_CallSetting__SWIG_0(useDefaultValues), true);
+  public CallSetting(SWIGTYPE_p_pj_bool_t useDefaultValues) {
+    this(pjsua2JNI.new_CallSetting__SWIG_0(SWIGTYPE_p_pj_bool_t.getCPtr(useDefaultValues)), true);
   }
 
   public CallSetting() {

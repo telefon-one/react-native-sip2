@@ -43,15 +43,6 @@ public class OnCallReplacedParam {
     return pjsua2JNI.OnCallReplacedParam_newCallId_get(swigCPtr, this);
   }
 
-  public void setNewCall(Call value) {
-    pjsua2JNI.OnCallReplacedParam_newCall_set(swigCPtr, this, Call.getCPtr(value), value);
-  }
-
-  public Call getNewCall() {
-    long cPtr = pjsua2JNI.OnCallReplacedParam_newCall_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new Call(cPtr, false);
-  }
-
   public OnCallReplacedParam() {
     this(pjsua2JNI.new_OnCallReplacedParam(), true);
   }
