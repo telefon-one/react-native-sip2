@@ -172,11 +172,13 @@ public class PjSipService extends Service {
             }
 
             epConfig.getMedConfig().setHasIoqueue(true);
-            epConfig.getMedConfig().setClockRate(8000);
+            epConfig.getMedConfig().setClockRate(8000); //44800 for HQ
             epConfig.getMedConfig().setQuality(4);
-            epConfig.getMedConfig().setEcOptions(1);
-            epConfig.getMedConfig().setEcTailLen(200);
+            epConfig.getMedConfig().setEcOptions(1); //ep_cfg.medConfig.ecOptions=PJMEDIA_ECHO_WEBRTC|PJMEDIA_ECHO_USE_NOISE_SUPPRESSOR|PJMEDIA_ECHO_AGGRESSIVENESS_AGGRESSIVE;
+            epConfig.getMedConfig().setEcTailLen(0); // 0 - disable echo cancellation, 200 - default
             epConfig.getMedConfig().setThreadCnt(2);
+            
+            
             mEndpoint.libInit(epConfig);
 
             mTrash.add(epConfig);
