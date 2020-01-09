@@ -4,11 +4,11 @@
     "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
   "author": {
-    "name": "Florin Dumitru",
-    "email": "dumitru.florin@outlook.com"
+    "name": "Anton Dodonov",
+    "email": "cpodimas@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/florindumitru/react-native-sip/issues"
+    "url": "https://github.com/telefon-one/react-native-sip2/issues"
   },
   "dependencies": {
     "events": "1.1.0"
@@ -25,9 +25,9 @@
     "jsdoc": "^3.5.5",
     "minami": "^1.2.3"
   },
-  "name": "react-native-sip",
-  "description": "SIP module for React Native",
-  "homepage": "https://github.com/florindumitru/react-native-sip",
+  "name": "react-native-sip2",
+  "description": "SIP module based on PjSIP for React Native",
+  "homepage": "https://github.com/telefon-one/react-native-sip2/",
   "keywords": [
     "react-component",
     "react-native",
@@ -43,7 +43,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/florindumitru/react-native-sip.git"
+    "url": "git+https://github.com/telefon-one/react-native-sip2.git"
   },
   "version": "2.8.8"
 }
