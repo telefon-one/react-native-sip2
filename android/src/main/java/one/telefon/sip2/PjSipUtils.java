@@ -1,4 +1,4 @@
-package com.carusto.ReactNativePjSip;
+package one.telefon.sip2;
 
 import org.pjsip.pjsua2.SipHeader;
 import org.pjsip.pjsua2.SipHeaderVector;

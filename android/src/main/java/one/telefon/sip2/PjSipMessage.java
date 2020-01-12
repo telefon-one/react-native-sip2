@@ -1,4 +1,4 @@
-package com.carusto.ReactNativePjSip;
+package one.telefon.sip2;
 
 import org.json.JSONObject;
 import org.pjsip.pjsua2.OnInstantMessageParam;

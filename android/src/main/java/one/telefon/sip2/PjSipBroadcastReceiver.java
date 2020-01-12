@@ -1,11 +1,11 @@
-package com.carusto.ReactNativePjSip;
+package one.telefon.sip2;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
-import com.carusto.ReactNativePjSip.utils.ArgumentUtils;
+import one.telefon.sip2.utils.ArgumentUtils;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.modules.core.DeviceEventManagerModule;

@@ -1,4 +1,4 @@
-package com.carusto.ReactNativePjSip.utils;
+package one.telefon.sip2.utils;
 
 import android.content.Intent;
 import android.util.Log;

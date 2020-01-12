@@ -1,4 +1,4 @@
-package com.carusto.ReactNativePjSip.dto;
+package one.telefon.sip2.dto;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;

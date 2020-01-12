@@ -1,4 +1,4 @@
-package com.carusto.ReactNativePjSip.dto;
+package one.telefon.sip2.dto;
 
 import android.content.Intent;
 

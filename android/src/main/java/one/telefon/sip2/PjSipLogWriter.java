@@ -1,4 +1,4 @@
-package com.carusto.ReactNativePjSip;
+package one.telefon.sip2;
 
 import android.util.Log;
 import org.pjsip.pjsua2.LogEntry;

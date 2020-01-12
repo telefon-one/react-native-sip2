@@ -1,4 +1,4 @@
-package com.carusto.ReactNativePjSip;
+package one.telefon.sip2;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,8 +7,8 @@ import android.os.Bundle;
 
 import android.util.Log;
 
-import com.carusto.ReactNativePjSip.dto.CallSettingsDTO;
-import com.carusto.ReactNativePjSip.dto.SipMessageDTO;
+import one.telefon.sip2.dto.CallSettingsDTO;
+import one.telefon.sip2.dto.SipMessageDTO;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 
