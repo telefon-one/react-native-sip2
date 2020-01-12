@@ -47,11 +47,11 @@
 
 <!-- pj sip -->
     <service
-        android:name="com.carusto.ReactNativePjSip.PjSipService"
+        android:name="one.telefon.sip2.PjSipService"
         android:enabled="true"
         android:exported="true" />
 
-      <receiver android:name="com.carusto.ReactNativePjSip.PjSipConnectivityReceiver">
+      <receiver android:name="one.telefon.sip2.PjSipConnectivityReceiver">
         <intent-filter>
           <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
         </intent-filter>
