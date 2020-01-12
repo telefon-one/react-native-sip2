@@ -1,4 +1,4 @@
-package one.telefon.dialer.sip;
+package one.telefon.sip2.example;
 
 import android.app.Application;
 import android.content.Context;

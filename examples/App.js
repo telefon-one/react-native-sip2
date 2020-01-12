@@ -18,9 +18,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { Endpoint as teleEndpoint } from 'react-native-tele'
-import { Endpoint as sipEndpoint } from 'react-native-sip'
-import { ReplaceDialer } from 'react-native-replace-dialer'
+import { Endpoint as sipEndpoint } from 'react-native-sip2'
 
 export default class App extends Component {
   constructor() {
@@ -28,50 +26,7 @@ export default class App extends Component {
   }
   
   async componentDidMount() {
-    await tEndpointInit();
     await sEndpointInit();
-  }
-
-  async tEndpointInit() {
-    console.log("tEndpointInit()");
-    let tReplaceDialer = new ReplaceDialer();
-
-    if (!tReplaceDialer.isDefault()) {
-      console.log('Is NOT default dialer, try to set.');
-      if (tReplaceDialer.setDefault()) {
-        console.log('Default dialer sucessfully set.');
-      } else {
-        console.log('Default dialer NOT set');
-      }
-    }
-
-
-    this.tEndpoint = new teleEndpoint();
-    //console.log(this.tEndpoint);
-
-    let state = await this.tEndpoint.start(); // List of calls when RN context is started, could not be empty because Background service is working on Android
-    console.log("sEndpoint started");
-
-    let { calls, settings } = state;
-    console.log("calls:\n", calls);
-    console.log("settings:\n", settings);
-
-    // Subscribe to endpoint events
-    // tEndpoint.on("registration_changed", (account) => {}); // TODO
-    // tEndpoint.on("connectivity_changed", (online) => {}); // TODO
-    this.tEndpoint.on("call_received", (call) => { console.log("call_received",call); });
-    this.tEndpoint.on("call_changed", (call) => { console.log("call_changed",call);  });
-    this.tEndpoint.on("call_terminated", (call) => { console.log("call_terminated",call);  });
-    // tEndpoint.on("call_screen_locked", (call) => {  console.log("call_screen_locked",call);  }); // Android only
-
-
-    let options = {
-      headers: {
-        "sim": "1" // TODO
-      }
-    }
-
-    //let call = await tEndpoint.makeCall(destination, options);
   }
 
   async sEndpointInit() {
