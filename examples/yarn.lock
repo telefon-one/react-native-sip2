@@ -5028,10 +5028,10 @@ react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-native-sip2@^2.8.12:
-  version "2.8.12"
-  resolved "https://registry.yarnpkg.com/react-native-sip2/-/react-native-sip2-2.8.12.tgz#c8e7febdb79d9477a6ce256796d482b3546f3214"
-  integrity sha512-/p7u0D+PKRR6E+A8qr5Er9dvI0vxLbklB6WNiA+0ZKon/f3nl7TeatZtVtEuZP6XH2zcAy7N25C6o2b+xEoNhA==
+react-native-sip2@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-sip2/-/react-native-sip2-3.0.0.tgz#1ff8f4fd6b608503b2bd4f9fe600a83d2dcb4251"
+  integrity sha512-XsHEhlmoix2EhnadSHZE92Q5ZY+8wCoW60R7RoLiwtgU89TjL7LqxeTZ5b9eY+p0jtm2OlMFZkbtYZpPV801JA==
   dependencies:
     events "1.1.0"
 
