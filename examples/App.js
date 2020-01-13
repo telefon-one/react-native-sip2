@@ -26,7 +26,7 @@ export default class App extends Component {
   }
   
   async componentDidMount() {
-    await sEndpointInit();
+    await this.sEndpointInit();
   }
 
   async sEndpointInit() {
