@@ -1,7 +1,7 @@
 
 
-# react-native-sip
-![npm version](https://badge.fury.io/js/react-native-sip.svg)
+# react-native-sip2
+![npm version](https://badge.fury.io/js/react-native-sip2.svg)
 
 **UPDATE**: Now is compatible with RN 0.60+ (iOS and AndroidX)
 
@@ -17,7 +17,7 @@ iOS - For RN 0.60+ you need to execute the following commands:
 - Support video and audio communication.
 - Ability to use Callkit and PushNotifications.
 - You can use it to build an iOS/Android app that can communicate with SIP server.
-- Android version is based on [react-native-pjsip-builder](https://github.com/datso/react-native-pjsip-builder)
+- Android version is based on [react-native-sip2-builder](https://github.com/telefon-one/react-native-sip2-builder)
 - iOS version is based on [Vialer-pjsip-iOS](https://github.com/VoIPGRID/Vialer-pjsip-iOS)
 
 ## To do
@@ -29,8 +29,8 @@ iOS - For RN 0.60+ you need to execute the following commands:
 
 ## Installation
 
-- [iOS](https://github.com/florindumitru/react-native-sip/blob/master/docs/installation_ios.md)
-- [Android](https://github.com/florindumitru/react-native-sip/blob/master/docs/installation_android.md)
+- [iOS](https://github.com/telefon-one/react-native-sip2/blob/master/docs/installation_ios.md)
+- [Android](https://github.com/telefon-one/react-native-sip2/blob/master/docs/installation_android.md)
 
 ## Usage
 
@@ -43,7 +43,7 @@ When User open your application, javascript start to work and now your js applic
 So thats why first step should call start method for sip module.
 
 ```javascript
-import {Endpoint} from 'react-native-sip'
+import {Endpoint} from 'react-native-sip2'
 
 let endpoint = new Endpoint();
 let state = await endpoint.start(); // List of available accounts and calls when RN context is started, could not be empty because Background service is working on Android
@@ -108,10 +108,3 @@ endpoint.addListener("call_terminated", (newCall) => {
 ```
 
 ## API
-
-[DOCUMENTATION](https://florindumitru.github.io/react-native-sip/)
-
-
-
-
-*This repo it's based on a fork of [datso/react-native-pjsip](https://github.com/datso/react-native-pjsip).* 
