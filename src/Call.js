@@ -29,6 +29,29 @@ export default class Call {
             }
         }
 
+        if (localUri) {
+            let match = localUri.match(/"([^"]+)" <sip:([^@]+)@/);
+
+            if (match) {
+                localName = match[1];
+                localNumber = match[2];
+            } else {
+                match = localUri.match(/sip:([^@]+)@/);
+
+                if (match) {
+                    localNumber = match[1];
+                }
+            }
+
+                match = localUri.match(/tel:([^@]+)/);
+
+                if (match) {
+                    localNumber = decodeURIComponent(match[1]);
+                }
+            
+        }
+
+
         this._id = id;
         this._callId = callId;
         this._accountId = accountId;
@@ -48,6 +71,8 @@ export default class Call {
         this._remoteVideoCount = remoteVideoCount;
         this._remoteNumber = remoteNumber;
         this._remoteName = remoteName;
+        this._localNumber = localNumber;
+        this._localName = localName;
         this._audioCount = audioCount;
         this._videoCount = videoCount;
         this._lastStatusCode = lastStatusCode;
