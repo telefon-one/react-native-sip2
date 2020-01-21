@@ -234,11 +234,14 @@ public class PjSipService extends Service {
             mWifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             mWifiLock = mWifiManager.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF, this.getPackageName()+"-wifi-call-lock");
             mWifiLock.setReferenceCounted(false);
+
+            /*
             mTelephonyManager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-            mGSMIdle = mTelephonyManager.getCallState() == TelephonyManager.CALL_STATE_IDLE;
+            mGSMIdle = true; //mTelephonyManager.getCallState() == TelephonyManager.CALL_STATE_IDLE;
 
             IntentFilter phoneStateFilter = new IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
             registerReceiver(mPhoneStateChangedReceiver, phoneStateFilter);
+            */
 
             mInitialized = true;
 
@@ -933,6 +936,7 @@ public class PjSipService extends Service {
 
     void emmitCallReceived(PjSipAccount account, PjSipCall call) {
         // Automatically decline incoming call when user uses GSM
+        /*
         if (!mGSMIdle) {
             try {
                 call.hangup(new CallOpParam(true));
@@ -941,7 +945,7 @@ public class PjSipService extends Service {
             }
 
             return;
-        }
+        }*/
 
         /**
         // Automatically start application when incoming call received.
@@ -1085,6 +1089,8 @@ public class PjSipService extends Service {
     /**
      * Pauses all calls, used when received GSM call.
      */
+    
+    /*
     private void doPauseAllCalls() {
         for (PjSipCall call : mCalls) {
             try {
@@ -1093,11 +1099,12 @@ public class PjSipService extends Service {
                 Log.w(TAG, "Failed to put call on hold", e);
             }
         }
-    }
+    }*/
 
     protected class PhoneStateChangedReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            /*
             final String extraState = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
 
             if (TelephonyManager.EXTRA_STATE_RINGING.equals(extraState) || TelephonyManager.EXTRA_STATE_OFFHOOK.equals(extraState)) {
@@ -1115,6 +1122,7 @@ public class PjSipService extends Service {
                 Log.d(TAG, "GSM call released, allow to accept incoming calls.");
                 mGSMIdle = true;
             }
+            */
         }
     }
 }
