@@ -14,6 +14,9 @@ export default class Call {
         let remoteNumber = null;
         let remoteName = null;
 
+        let localNumber = null;
+        let localName = null;
+
         if (remoteUri) {
             let match = remoteUri.match(/"([^"]+)" <sip:([^@]+)@/);
 
