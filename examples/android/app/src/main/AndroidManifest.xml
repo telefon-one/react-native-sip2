@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="one.telefon.sip2.example">
+  package="one.telefon.sip2example">
 
-  <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
@@ -45,7 +45,7 @@
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 
-<!-- pj sip -->
+<!-- sip2 -->
     <service
         android:name="one.telefon.sip2.PjSipService"
         android:enabled="true"
@@ -56,7 +56,7 @@
           <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
         </intent-filter>
       </receiver>
-<!-- pj sip -->
+<!-- sip2 -->
 
     </application>
 

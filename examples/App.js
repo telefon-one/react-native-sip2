@@ -36,17 +36,19 @@ export default class App extends Component {
     let configuration = {
       "name": "MyUserName",
 
-      //"username": "50363",
-      //"password": "pass50363",
-      //"domain": "sip.zadarma.com",
+      "username": "50363",
+      "password": "pass50363",
+      "domain": "sip.zadarma.com",
+      "regServer": "",
       //"regServer": "sip.zadarma.com", // Default wildcard
 
+      /*
       "username": "50363",
       "password": "pass50363",
       "domain": "172.16.104.17",
       "regServer": "",
       //"regServer": "172.16.104.17", // Default wildcard
-
+*/
 
       "proxy": null,
       "transport": "UDP",//null, // Default TCP
@@ -97,8 +99,19 @@ export default class App extends Component {
 
 
     // Subscribe to endpoint events
-    this.sEndpoint.on("registration_changed", (account) => {
+    this.sEndpoint.on("registration_changed", (account) =>  {
       console.log("registration_changed", account);
+
+      let options = {
+        headers: {
+          "P-Assserted-Identity": "Header example",
+          "X-UA": "React native"
+        }
+      }
+      
+      let call =  this.sEndpoint.makeCall(account, "79214334799", options);
+
+
     });
     this.sEndpoint.on("connectivity_changed", (online) => {
       console.log("connectivity_changed", online);
@@ -110,12 +123,12 @@ export default class App extends Component {
     });
     this.sEndpoint.on("call_changed", (call) => {
       console.log("call_changed", call);
-      this.onCallTerminated(call);
+      //this.onCallTerminated(call);
       //Если из SIP пришел сигнал повесить трубку - шлем intent в наш Dialer
     });
     this.sEndpoint.on("call_terminated", (call) => {
       console.log("call_terminated", call);
-      this.onCallTerminated(call);
+      //this.onCallTerminated(call);
       //Если из SIP пришел сигнал повесить трубку - шлем intent в наш Dialer
     });
     this.sEndpoint.on("call_screen_locked", (call) => {

@@ -43,15 +43,15 @@ public class PjActions {
 
     public static final String ACTION_SET_SERVICE_CONFIGURATION = "set_service_configuration";
 
-    public static final String EVENT_STARTED = "com.carusto.account.started";
-    public static final String EVENT_ACCOUNT_CREATED = "com.carusto.account.created";
-    public static final String EVENT_REGISTRATION_CHANGED = "com.carusto.registration.changed";
-    public static final String EVENT_CALL_CHANGED = "com.carusto.call.changed";
-    public static final String EVENT_CALL_TERMINATED = "com.carusto.call.terminated";
-    public static final String EVENT_CALL_RECEIVED = "com.carusto.call.received";
-    public static final String EVENT_CALL_SCREEN_LOCKED = "com.carusto.call.screen.locked";
-    public static final String EVENT_MESSAGE_RECEIVED = "com.carusto.message.received";
-    public static final String EVENT_HANDLED = "com.carusto.handled";
+    public static final String EVENT_STARTED = "one.telefon.account.started";
+    public static final String EVENT_ACCOUNT_CREATED = "one.telefon.account.created";
+    public static final String EVENT_REGISTRATION_CHANGED = "one.telefon.registration.changed";
+    public static final String EVENT_CALL_CHANGED = "one.telefon.call.changed";
+    public static final String EVENT_CALL_TERMINATED = "one.telefon.call.terminated";
+    public static final String EVENT_CALL_RECEIVED = "one.telefon.call.received";
+    public static final String EVENT_CALL_SCREEN_LOCKED = "one.telefon.call.screen.locked";
+    public static final String EVENT_MESSAGE_RECEIVED = "one.telefon.message.received";
+    public static final String EVENT_HANDLED = "one.telefon.handled";
 
     public static Intent createStartIntent(int callbackId, ReadableMap configuration, Context context) {
         Intent intent = new Intent(context, PjSipService.class);

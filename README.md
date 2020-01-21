@@ -1,5 +1,3 @@
-
-
 # react-native-sip2
 ![npm version](https://badge.fury.io/js/react-native-sip2.svg)
 

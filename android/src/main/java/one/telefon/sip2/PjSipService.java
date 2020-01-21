@@ -164,7 +164,7 @@ public class PjSipService extends Service {
             if (mServiceConfiguration.isUserAgentNotEmpty()) {
                 epConfig.getUaConfig().setUserAgent(mServiceConfiguration.getUserAgent());
             } else {
-                epConfig.getUaConfig().setUserAgent("React Native PjSip ("+ mEndpoint.libVersion().getFull() +")");
+                epConfig.getUaConfig().setUserAgent("React Native Sip2 ("+ mEndpoint.libVersion().getFull() +")");
             }
 
             if (mServiceConfiguration.isStunServersNotEmpty()) {
@@ -178,7 +178,14 @@ public class PjSipService extends Service {
             epConfig.getMedConfig().setEcTailLen(0); // 0 - disable echo cancellation, 200 - default
             epConfig.getMedConfig().setThreadCnt(2);
             
-            
+            epConfig.getMedConfig().setChannelCount(2);
+            //epConfig.getMedConfig().setNoVad(true);
+            //epConfig.setSndRecLatency(long value)
+
+            //epConfig.setSndPlayLatency //(long value) {
+            //epConfig.setJbInit //(int value) {
+            //getTxDropPct
+
             mEndpoint.libInit(epConfig);
 
             mTrash.add(epConfig);

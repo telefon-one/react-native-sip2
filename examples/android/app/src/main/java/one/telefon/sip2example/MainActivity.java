@@ -1,4 +1,4 @@
-package one.telefon.sip2.example;
+package one.telefon.sip2example;
 
 import com.facebook.react.ReactActivity;
 
