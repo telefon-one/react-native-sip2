@@ -166,4 +166,16 @@ public class PjSipModule extends ReactContextBaseJavaModule {
         Intent intent = PjActions.createChangeCodecSettingsIntent(callbackId, codecSettings, getReactApplicationContext());
         getReactApplicationContext().startService(intent);
     }
+
+    /*
+    RCT_EXPORT_METHOD(activateAudioSession: (RCTResponseSenderBlock) callback) {
+        pjsua_set_no_snd_dev();
+        pj_status_t status;
+        status = pjsua_set_snd_dev(PJMEDIA_AUD_DEFAULT_CAPTURE_DEV, PJMEDIA_AUD_DEFAULT_PLAYBACK_DEV);
+        if (status != PJ_SUCCESS) {
+            NSLog(@"Failed to active audio session");
+        }
+    }
+    */
+
 }
