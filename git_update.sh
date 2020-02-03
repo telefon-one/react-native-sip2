@@ -1,5 +1,5 @@
 echo get version
-VERSION=2.9
+VERSION=2.10
 echo v${VERSION}
 git add .
 git pull
