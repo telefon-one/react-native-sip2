@@ -1,7 +1,7 @@
 package one.telefon.sip2.dto;
 
 import android.content.Intent;
-//import android.support.annotation.Nullable;
+//import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 
 import java.util.Map;
