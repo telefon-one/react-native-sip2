@@ -43,6 +43,8 @@ public class PjActions {
 
     public static final String ACTION_SET_SERVICE_CONFIGURATION = "set_service_configuration";
 
+    public static final String ACTION_ACTIVATEAUDIOSESSION_CALL = "call_activateaudiosession"
+
     public static final String EVENT_STARTED = "one.telefon.account.started";
     public static final String EVENT_ACCOUNT_CREATED = "one.telefon.account.created";
     public static final String EVENT_REGISTRATION_CHANGED = "one.telefon.registration.changed";
@@ -123,6 +125,15 @@ public class PjActions {
     public static Intent createHangupCallIntent(int callbackId, int callId, Context context) {
         Intent intent = new Intent(context, PjSipService.class);
         intent.setAction(PjActions.ACTION_HANGUP_CALL);
+        intent.putExtra("callback_id", callbackId);
+        intent.putExtra("call_id", callId);
+
+        return intent;
+    }
+
+    public static Intent createActivateAudioSessionIntent(int callbackId, int callId, Context context) {
+        Intent intent = new Intent(context, PjSipService.class);
+        intent.setAction(PjActions.ACTION_ACTIVATEAUDIOSESSION_CALL);
         intent.putExtra("callback_id", callbackId);
         intent.putExtra("call_id", callId);
 

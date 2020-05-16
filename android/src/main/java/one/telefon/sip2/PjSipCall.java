@@ -44,6 +44,24 @@ public class PjSipCall extends Call {
         return account.getService();
     }
 
+
+    /*
+    public void activateAudioSession(!!!!) throws Exception {
+        if (isHeld) {
+            return;
+        }
+
+        isHeld = true;
+
+        // Emmit changes
+        getService().emmitCallUpdated(this);
+
+        // Send reinvite to server for hold
+        setHold(new CallOpParam(true));
+    }
+*/
+
+
     public void hold() throws Exception {
         if (isHeld) {
             return;

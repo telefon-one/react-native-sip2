@@ -371,6 +371,9 @@ public class PjSipService extends Service {
             case PjActions.ACTION_ANSWER_CALL:
                 handleCallAnswer(intent);
                 break;
+            case PjActions.ACTION_ACTIVATEAUDIOSESSION_CALL:
+                handleActivateAudioSession(intent);
+                break;
             case PjActions.ACTION_HOLD_CALL:
                 handleCallSetOnHold(intent);
                 break;
@@ -730,6 +733,61 @@ public class PjSipService extends Service {
             mEmitter.fireIntentHandled(intent, e);
         }
     }
+
+    private void handleActivateAudioSession(Intent intent) {
+        try {
+            int callId = intent.getIntExtra("call_id", -1);
+
+            // -----
+            PjSipCall call = findCall(callId);
+            CallOpParam prm = new CallOpParam();
+            prm.setStatusCode(pjsip_status_code.PJSIP_SC_PROGRESS);
+            call.answer(prm);
+
+            // Automatically put other calls on hold.
+            //doPauseParallelCalls(call);
+
+            mEmitter.fireIntentHandled(intent);
+        } catch (Exception e) {
+            mEmitter.fireIntentHandled(intent, e);
+        }
+    }
+
+    private void handleCallProgress(Intent intent) {
+        try {
+            int callId = intent.getIntExtra("call_id", -1);
+
+            // -----
+            PjSipCall call = findCall(callId);
+            CallOpParam prm = new CallOpParam();
+            prm.setStatusCode(pjsip_status_code.PJSIP_SC_PROGRESS);
+            call.answer(prm);
+
+            // Automatically put other calls on hold.
+            //doPauseParallelCalls(call);
+
+            mEmitter.fireIntentHandled(intent);
+        } catch (Exception e) {
+            mEmitter.fireIntentHandled(intent, e);
+        }
+    }
+
+    private void handleCallRinging(Intent intent) {
+        try {
+            int callId = intent.getIntExtra("call_id", -1);
+
+            // -----
+            PjSipCall call = findCall(callId);
+            CallOpParam prm = new CallOpParam();
+            prm.setStatusCode(pjsip_status_code.PJSIP_SC_RINGING);
+            call.answer(prm);
+
+            mEmitter.fireIntentHandled(intent);
+        } catch (Exception e) {
+            mEmitter.fireIntentHandled(intent, e);
+        }
+    }
+
 
     private void handleCallSetOnHold(Intent intent) {
         try {
