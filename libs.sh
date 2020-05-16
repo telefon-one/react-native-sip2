@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo SKIP
+exit 0
+
 set -e
 
 VERSION="v3.0.0"
