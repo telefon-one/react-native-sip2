@@ -371,9 +371,18 @@ public class PjSipService extends Service {
             case PjActions.ACTION_ANSWER_CALL:
                 handleCallAnswer(intent);
                 break;
+            case PjActions.ACTION_RINGING_CALL:
+                handleCallRinging(intent);
+                break;
+
+            case PjActions.ACTION_PROGRESS_CALL:
+                handleCallProgress(intent);
+                break;
+                /*
             case PjActions.ACTION_ACTIVATEAUDIOSESSION_CALL:
                 handleActivateAudioSession(intent);
                 break;
+                */
             case PjActions.ACTION_HOLD_CALL:
                 handleCallSetOnHold(intent);
                 break;
@@ -734,6 +743,7 @@ public class PjSipService extends Service {
         }
     }
 
+    /*
     private void handleActivateAudioSession(Intent intent) {
         try {
             int callId = intent.getIntExtra("call_id", -1);
@@ -751,7 +761,7 @@ public class PjSipService extends Service {
         } catch (Exception e) {
             mEmitter.fireIntentHandled(intent, e);
         }
-    }
+    }*/
 
     private void handleCallProgress(Intent intent) {
         try {

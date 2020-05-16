@@ -307,6 +307,31 @@ export default class Endpoint extends EventEmitter {
         });
     }
 
+    ringingCall(call) {
+        return new Promise((resolve, reject) => {
+            NativeModules.PjSipModule.ringingCall(call.getId(), (successful, data) => {
+                if (successful) {
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
+    }
+
+
+    progressCall(call) {
+        return new Promise((resolve, reject) => {
+            NativeModules.PjSipModule.progressCall(call.getId(), (successful, data) => {
+                if (successful) {
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
+    }
+
     /**
      * Hangup call by using method that is appropriate according to the call state.
      *

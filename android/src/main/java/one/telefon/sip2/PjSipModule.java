@@ -91,6 +91,20 @@ public class PjSipModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void ringingCall(int callId, Callback callback) {
+        int callbackId = receiver.register(callback);
+        Intent intent = PjActions.createRingingCallIntent(callbackId, callId, getReactApplicationContext());
+        getReactApplicationContext().startService(intent);
+    }
+
+    @ReactMethod
+    public void progressCall(int callId, Callback callback) {
+        int callbackId = receiver.register(callback);
+        Intent intent = PjActions.createProgressCallIntent(callbackId, callId, getReactApplicationContext());
+        getReactApplicationContext().startService(intent);
+    }
+
+    @ReactMethod
     public void holdCall(int callId, Callback callback) {
         int callbackId = receiver.register(callback);
         Intent intent = PjActions.createHoldCallIntent(callbackId, callId, getReactApplicationContext());
@@ -167,12 +181,7 @@ public class PjSipModule extends ReactContextBaseJavaModule {
         getReactApplicationContext().startService(intent);
     }
 
-    @ReactMethod
-    public void activateAudioSession(int callId, Callback callback) {
-        int callbackId = receiver.register(callback);
-        Intent intent = PjActions.createActivateAudioSessionIntent(callbackId, callId, getReactApplicationContext());
-        getReactApplicationContext().startService(intent);
-    }
+
 
     /*
     RCT_EXPORT_METHOD(activateAudioSession: (RCTResponseSenderBlock) callback) {
