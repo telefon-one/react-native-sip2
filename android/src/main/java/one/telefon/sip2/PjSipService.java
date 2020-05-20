@@ -187,6 +187,7 @@ public class PjSipService extends Service {
             //PJMEDIA_ECHO_WEBRTC = 3,
             //PJMEDIA_ECHO_AGGRESSIVENESS_AGGRESSIVE = 0x300
             epConfig.getMedConfig().setEcOptions(1);
+            //epConfig.getMedConfig().setEcOptions(3);
             //epConfig.getMedConfig().setEcOptions(3+0x300);
 
             //epConfig.getMedConfig().setEcTailLen(200); 
@@ -196,6 +197,7 @@ public class PjSipService extends Service {
             epConfig.getMedConfig().setThreadCnt(4);
             //epConfig.getMedConfig().setThreadCnt(2);
             
+            //epConfig.getMedConfig().setChannelCount(1);
             epConfig.getMedConfig().setChannelCount(2);
             epConfig.getMedConfig().setNoVad(true);
 
