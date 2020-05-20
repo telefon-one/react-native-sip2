@@ -173,22 +173,25 @@ public class PjSipService extends Service {
 
             epConfig.getMedConfig().setHasIoqueue(true);
             //epConfig.getMedConfig().setClockRate(8000); 
-            epConfig.getMedConfig().setClockRate(44800); //44800 for HQ
+            //epConfig.getMedConfig().setClockRate(44800); //44800 for HQ
+            epConfig.getMedConfig().setClockRate(48000); 
 
             //quality, 0-10, according to this table: 5-10: resampling use large filter, 3-4: resampling use small filter, 1-2: resampling use linear. The media quality also sets speex codec quality/complexity to the number.
             //Default: 5 (PJSUA_DEFAULT_CODEC_QUALITY).
-            //epConfig.getMedConfig().setQuality(4);
-            epConfig.getMedConfig().setQuality(10);
+            epConfig.getMedConfig().setQuality(4);
+            //epConfig.getMedConfig().setQuality(10);
 
         
             //ep_cfg.medConfig.ecOptions=PJMEDIA_ECHO_WEBRTC|PJMEDIA_ECHO_USE_NOISE_SUPPRESSOR|PJMEDIA_ECHO_AGGRESSIVENESS_AGGRESSIVE;
             //PJMEDIA_ECHO_SPEEX = 1,
             //PJMEDIA_ECHO_WEBRTC = 3,
             //PJMEDIA_ECHO_AGGRESSIVENESS_AGGRESSIVE = 0x300
-            //epConfig.getMedConfig().setEcOptions(1);
-            epConfig.getMedConfig().setEcOptions(3+0x300);
+            epConfig.getMedConfig().setEcOptions(1);
+            //epConfig.getMedConfig().setEcOptions(3+0x300);
 
-            epConfig.getMedConfig().setEcTailLen(200); 
+            //epConfig.getMedConfig().setEcTailLen(200); 
+            epConfig.getMedConfig().setEcTailLen(400); 
+
             //epConfig.getMedConfig().setEcTailLen(0); // 0 - disable echo cancellation, 200 - default
             epConfig.getMedConfig().setThreadCnt(4);
             //epConfig.getMedConfig().setThreadCnt(2);
@@ -197,28 +200,28 @@ public class PjSipService extends Service {
             epConfig.getMedConfig().setNoVad(true);
 
             
-            
-            epConfig.setSndRecLatency(200);  //#define 	PJMEDIA_SND_DEFAULT_REC_LATENCY   100
-            epConfig.setSndPlayLatency(280); // #define 	PJMEDIA_SND_DEFAULT_PLAY_LATENCY   140
+            /*
+            epConfig.getMedConfig().setSndRecLatency(200);  //#define 	PJMEDIA_SND_DEFAULT_REC_LATENCY   100
+            epConfig.getMedConfig().setSndPlayLatency(280); // #define 	PJMEDIA_SND_DEFAULT_PLAY_LATENCY   140
 
             
             //Jitter buffer initial prefetch delay in msec. The value must be between jb_min_pre and jb_max_pre below.
             //Default: -1 (to use default stream settings, currently 150 msec)
-            epConfig.setJbInit(150);
+            epConfig.getMedConfig().setJbInit(150);
             
             //Jitter buffer minimum prefetch delay in msec.
             //Default: -1 (to use default stream settings, currently 60 msec)
-            epConfig.setJbMinPre(60);
+            epConfig.getMedConfig().setJbMinPre(60);
             
             //Jitter buffer maximum prefetch delay in msec.
             //Default: -1 (to use default stream settings, currently 240 msec)
-            epConfig.setJbMaxPre(240);
+            epConfig.getMedConfig().setJbMaxPre(240);
 
         
             //Set maximum delay that can be accomodated by the jitter buffer msec.            
             //Default: -1 (to use default stream settings, currently 360 msec)
-            epConfig.setJbMax(360);
-            
+            epConfig.getMedConfig().setJbMax(360);
+            */
             
             //getTxDropPct
 

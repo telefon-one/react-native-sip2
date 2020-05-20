@@ -13,7 +13,7 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.ViewProps;
 
 import org.pjsip.pjsua2.MediaFormat;
-import org.pjsip.pjsua2.MediaFormatVector;
+//import org.pjsip.pjsua2.MediaFormatVector;
 import org.pjsip.pjsua2.VideoDevInfo;
 import org.pjsip.pjsua2.VideoPreview;
 import org.pjsip.pjsua2.VideoPreviewOpParam;
