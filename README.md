@@ -1,9 +1,11 @@
 # react-native-sip2
 ![npm version](https://badge.fury.io/js/react-native-sip2.svg)
 
-**UPDATE**: Now is compatible with RN 0.60+ (iOS and AndroidX)
+**UPDATE**: Now is based on PJSIP 2.9
 
-iOS - For RN 0.60+ you need to execute the following commands:
+compatible with RN 0.60+ (iOS and AndroidX)
+
+    iOS - For RN 0.60+ you need to execute the following commands:
 
     yarn add react-native-sip
     cd ios
