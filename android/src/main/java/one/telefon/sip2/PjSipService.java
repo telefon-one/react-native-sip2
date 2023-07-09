@@ -85,7 +85,8 @@ public class PjSipService extends Service {
     private List<PjSipCall> mCalls = new ArrayList<>();
 
     // In order to ensure that GC will not destroy objects that are used in PJSIP
-    // Also there is limitation of pjsip that thread should be registered first before working with library
+    // Also there is limitation of pjsip that thread should be registered first
+    // before working with library
     // (but we couldn't register GC thread in pjsip)
     private List<Object> mTrash = new LinkedList<>();
 
@@ -164,7 +165,7 @@ public class PjSipService extends Service {
             if (mServiceConfiguration.isUserAgentNotEmpty()) {
                 epConfig.getUaConfig().setUserAgent(mServiceConfiguration.getUserAgent());
             } else {
-                epConfig.getUaConfig().setUserAgent("React Native Sip2 ("+ mEndpoint.libVersion().getFull() +")");
+                epConfig.getUaConfig().setUserAgent("React Native Sip2 (" + mEndpoint.libVersion().getFull() + ")");
             }
 
             if (mServiceConfiguration.isStunServersNotEmpty()) {
@@ -172,61 +173,65 @@ public class PjSipService extends Service {
             }
 
             epConfig.getMedConfig().setHasIoqueue(true);
-            epConfig.getMedConfig().setClockRate(8000); 
-            //epConfig.getMedConfig().setClockRate(44800); //44800 for HQ
-            //epConfig.getMedConfig().setClockRate(48000); 
+            epConfig.getMedConfig().setClockRate(8000);
+            // epConfig.getMedConfig().setClockRate(44800); //44800 for HQ
+            // epConfig.getMedConfig().setClockRate(48000);
 
-            //quality, 0-10, according to this table: 5-10: resampling use large filter, 3-4: resampling use small filter, 1-2: resampling use linear. The media quality also sets speex codec quality/complexity to the number.
-            //Default: 5 (PJSUA_DEFAULT_CODEC_QUALITY).
+            // quality, 0-10, according to this table: 5-10: resampling use large filter,
+            // 3-4: resampling use small filter, 1-2: resampling use linear. The media
+            // quality also sets speex codec quality/complexity to the number.
+            // Default: 5 (PJSUA_DEFAULT_CODEC_QUALITY).
             epConfig.getMedConfig().setQuality(4);
-            //epConfig.getMedConfig().setQuality(10);
+            // epConfig.getMedConfig().setQuality(10);
 
-        
-            //ep_cfg.medConfig.ecOptions=PJMEDIA_ECHO_WEBRTC|PJMEDIA_ECHO_USE_NOISE_SUPPRESSOR|PJMEDIA_ECHO_AGGRESSIVENESS_AGGRESSIVE;
-            //PJMEDIA_ECHO_SPEEX = 1,
-            //PJMEDIA_ECHO_WEBRTC = 3,
-            //PJMEDIA_ECHO_AGGRESSIVENESS_AGGRESSIVE = 0x300
+            // ep_cfg.medConfig.ecOptions=PJMEDIA_ECHO_WEBRTC|PJMEDIA_ECHO_USE_NOISE_SUPPRESSOR|PJMEDIA_ECHO_AGGRESSIVENESS_AGGRESSIVE;
+            // PJMEDIA_ECHO_SPEEX = 1,
+            // PJMEDIA_ECHO_WEBRTC = 3,
+            // PJMEDIA_ECHO_AGGRESSIVENESS_AGGRESSIVE = 0x300
             epConfig.getMedConfig().setEcOptions(1);
-            //epConfig.getMedConfig().setEcOptions(3);
-            //epConfig.getMedConfig().setEcOptions(3+0x300);
+            // epConfig.getMedConfig().setEcOptions(3);
+            // epConfig.getMedConfig().setEcOptions(3+0x300);
 
-            //epConfig.getMedConfig().setEcTailLen(200); 
-            //epConfig.getMedConfig().setEcTailLen(400); 
-            epConfig.getMedConfig().setEcTailLen(0); 
+            // epConfig.getMedConfig().setEcTailLen(200);
+            // epConfig.getMedConfig().setEcTailLen(400);
+            epConfig.getMedConfig().setEcTailLen(0);
 
-            //epConfig.getMedConfig().setEcTailLen(0); // 0 - disable echo cancellation, 200 - default
-            //epConfig.getMedConfig().setThreadCnt(4);
+            // epConfig.getMedConfig().setEcTailLen(0); // 0 - disable echo cancellation,
+            // 200 - default
+            // epConfig.getMedConfig().setThreadCnt(4);
             epConfig.getMedConfig().setThreadCnt(2);
-            
-            //epConfig.getMedConfig().setChannelCount(1);
+
+            // epConfig.getMedConfig().setChannelCount(1);
             epConfig.getMedConfig().setChannelCount(1);
             epConfig.getMedConfig().setNoVad(true);
 
-            
             /*
-            epConfig.getMedConfig().setSndRecLatency(200);  //#define 	PJMEDIA_SND_DEFAULT_REC_LATENCY   100
-            epConfig.getMedConfig().setSndPlayLatency(280); // #define 	PJMEDIA_SND_DEFAULT_PLAY_LATENCY   140
+             * epConfig.getMedConfig().setSndRecLatency(200); //#define
+             * PJMEDIA_SND_DEFAULT_REC_LATENCY 100
+             * epConfig.getMedConfig().setSndPlayLatency(280); // #define
+             * PJMEDIA_SND_DEFAULT_PLAY_LATENCY 140
+             * 
+             * 
+             * //Jitter buffer initial prefetch delay in msec. The value must be between
+             * jb_min_pre and jb_max_pre below.
+             * //Default: -1 (to use default stream settings, currently 150 msec)
+             * epConfig.getMedConfig().setJbInit(150);
+             * 
+             * //Jitter buffer minimum prefetch delay in msec.
+             * //Default: -1 (to use default stream settings, currently 60 msec)
+             * epConfig.getMedConfig().setJbMinPre(60);
+             * 
+             * //Jitter buffer maximum prefetch delay in msec.
+             * //Default: -1 (to use default stream settings, currently 240 msec)
+             * epConfig.getMedConfig().setJbMaxPre(240);
+             * 
+             * 
+             * //Set maximum delay that can be accomodated by the jitter buffer msec.
+             * //Default: -1 (to use default stream settings, currently 360 msec)
+             * epConfig.getMedConfig().setJbMax(360);
+             */
 
-            
-            //Jitter buffer initial prefetch delay in msec. The value must be between jb_min_pre and jb_max_pre below.
-            //Default: -1 (to use default stream settings, currently 150 msec)
-            epConfig.getMedConfig().setJbInit(150);
-            
-            //Jitter buffer minimum prefetch delay in msec.
-            //Default: -1 (to use default stream settings, currently 60 msec)
-            epConfig.getMedConfig().setJbMinPre(60);
-            
-            //Jitter buffer maximum prefetch delay in msec.
-            //Default: -1 (to use default stream settings, currently 240 msec)
-            epConfig.getMedConfig().setJbMaxPre(240);
-
-        
-            //Set maximum delay that can be accomodated by the jitter buffer msec.            
-            //Default: -1 (to use default stream settings, currently 360 msec)
-            epConfig.getMedConfig().setJbMax(360);
-            */
-            
-            //getTxDropPct
+            // getTxDropPct
 
             mEndpoint.libInit(epConfig);
 
@@ -236,30 +241,33 @@ public class PjSipService extends Service {
             {
                 TransportConfig transportConfig = new TransportConfig();
                 transportConfig.setQosType(pj_qos_type.PJ_QOS_TYPE_VOICE);
-                mUdpTransportId = mEndpoint.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, transportConfig);
+                mUdpTransportId = mEndpoint.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP,
+                        transportConfig);
                 mTrash.add(transportConfig);
             }
             {
                 TransportConfig transportConfig = new TransportConfig();
                 transportConfig.setQosType(pj_qos_type.PJ_QOS_TYPE_VOICE);
-                mTcpTransportId = mEndpoint.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_TCP, transportConfig);
+                mTcpTransportId = mEndpoint.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_TCP,
+                        transportConfig);
                 mTrash.add(transportConfig);
             }
             /*
-            {
-                TransportConfig transportConfig = new TransportConfig();
-                transportConfig.setQosType(pj_qos_type.PJ_QOS_TYPE_VOICE);
-                mTlsTransportId = mEndpoint.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_TLS, transportConfig);
-                mTrash.add(transportConfig);
-            }
-            */
+             * {
+             * TransportConfig transportConfig = new TransportConfig();
+             * transportConfig.setQosType(pj_qos_type.PJ_QOS_TYPE_VOICE);
+             * mTlsTransportId =
+             * mEndpoint.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_TLS,
+             * transportConfig);
+             * mTrash.add(transportConfig);
+             * }
+             */
 
             mEndpoint.libStart();
         } catch (Exception e) {
             Log.e(TAG, "Error while starting PJSIP", e);
         }
     }
-
 
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
@@ -276,16 +284,20 @@ public class PjSipService extends Service {
             mAudioManager = (AudioManager) getApplicationContext().getSystemService(AUDIO_SERVICE);
             mPowerManager = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
             mWifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-            mWifiLock = mWifiManager.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF, this.getPackageName()+"-wifi-call-lock");
+            mWifiLock = mWifiManager.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF,
+                    this.getPackageName() + "-wifi-call-lock");
             mWifiLock.setReferenceCounted(false);
 
             /*
-            mTelephonyManager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-            mGSMIdle = true; //mTelephonyManager.getCallState() == TelephonyManager.CALL_STATE_IDLE;
-
-            IntentFilter phoneStateFilter = new IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
-            registerReceiver(mPhoneStateChangedReceiver, phoneStateFilter);
-            */
+             * mTelephonyManager = (TelephonyManager)
+             * getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+             * mGSMIdle = true; //mTelephonyManager.getCallState() ==
+             * TelephonyManager.CALL_STATE_IDLE;
+             * 
+             * IntentFilter phoneStateFilter = new
+             * IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
+             * registerReceiver(mPhoneStateChangedReceiver, phoneStateFilter);
+             */
 
             mInitialized = true;
 
@@ -377,13 +389,13 @@ public class PjSipService extends Service {
         call.delete();
     }
 
-
     private void handle(Intent intent) {
         if (intent == null || intent.getAction() == null) {
             return;
         }
 
-        Log.d(TAG, "Handle \""+ intent.getAction() +"\" action ("+ ArgumentUtils.dumpIntentExtraParameters(intent) +")");
+        Log.d(TAG, "Handle \"" + intent.getAction() + "\" action (" + ArgumentUtils.dumpIntentExtraParameters(intent)
+                + ")");
 
         switch (intent.getAction()) {
             // General actions
@@ -422,11 +434,11 @@ public class PjSipService extends Service {
             case PjActions.ACTION_PROGRESS_CALL:
                 handleCallProgress(intent);
                 break;
-                /*
-            case PjActions.ACTION_ACTIVATEAUDIOSESSION_CALL:
-                handleActivateAudioSession(intent);
-                break;
-                */
+            /*
+             * case PjActions.ACTION_ACTIVATEAUDIOSESSION_CALL:
+             * handleActivateAudioSession(intent);
+             * break;
+             */
             case PjActions.ACTION_HOLD_CALL:
                 handleCallSetOnHold(intent);
                 break;
@@ -459,7 +471,12 @@ public class PjSipService extends Service {
             case PjActions.ACTION_CHANGE_CODEC_SETTINGS:
                 handleChangeCodecSettings(intent);
                 break;
-
+            case PjActions.ACTION_SEND_MESSAGE:
+                handleSendMessage(intent);
+                break;
+            case PjActions.ACTION_SEND_TYPING_INDICATION:
+                handleSendTypingIndication(intent);
+                break;
             // Configuration actions
             case PjActions.ACTION_SET_SERVICE_CONFIGURATION:
                 handleSetServiceConfiguration(intent);
@@ -471,7 +488,8 @@ public class PjSipService extends Service {
         try {
             // Modify existing configuration if it changes during application reload.
             if (intent.hasExtra("service")) {
-                ServiceConfigurationDTO newServiceConfiguration = ServiceConfigurationDTO.fromMap((Map) intent.getSerializableExtra("service"));
+                ServiceConfigurationDTO newServiceConfiguration = ServiceConfigurationDTO
+                        .fromMap((Map) intent.getSerializableExtra("service"));
                 if (!newServiceConfiguration.equals(mServiceConfiguration)) {
                     updateServiceConfiguration(newServiceConfiguration);
                 }
@@ -480,7 +498,7 @@ public class PjSipService extends Service {
             CodecInfoVector codVect = mEndpoint.codecEnum();
             JSONObject codecs = new JSONObject();
 
-            for(int i=0;i<codVect.size();i++){
+            for (int i = 0; i < codVect.size(); i++) {
                 CodecInfo codInfo = codVect.get(i);
                 String codId = codInfo.getCodecId();
                 short priority = codInfo.getPriority();
@@ -539,7 +557,7 @@ public class PjSipService extends Service {
             }
 
             if (account == null) {
-                throw new Exception("Account with \""+ accountId +"\" id not found");
+                throw new Exception("Account with \"" + accountId + "\" id not found");
             }
 
             account.register(renew);
@@ -556,12 +574,11 @@ public class PjSipService extends Service {
 
         // General settings
         AuthCredInfo cred = new AuthCredInfo(
-            "Digest",
-            configuration.getNomalizedRegServer(),
-            configuration.getUsername(),
-            0,
-            configuration.getPassword()
-        );
+                "Digest",
+                configuration.getNomalizedRegServer(),
+                configuration.getUsername(),
+                0,
+                configuration.getPassword());
 
         String idUri = configuration.getIdUri();
         String regUri = configuration.getRegUri();
@@ -610,7 +627,8 @@ public class PjSipService extends Service {
                     transportId = mTlsTransportId;
                     break;
                 default:
-                    Log.w(TAG, "Illegal \""+ configuration.getTransport() +"\" transport (possible values are UDP, TCP or TLS) use TCP instead");
+                    Log.w(TAG, "Illegal \"" + configuration.getTransport()
+                            + "\" transport (possible values are UDP, TCP or TLS) use TCP instead");
                     break;
             }
         }
@@ -657,7 +675,7 @@ public class PjSipService extends Service {
             }
 
             if (account == null) {
-                throw new Exception("Account with \""+ accountId +"\" id not found");
+                throw new Exception("Account with \"" + accountId + "\" id not found");
             }
 
             evict(account);
@@ -739,6 +757,34 @@ public class PjSipService extends Service {
         }
     }
 
+    private void handleSendMessage(Intent intent) {
+        try {
+            int accountId = intent.getIntExtra("account_id", -1);
+            PjSipAccount account = findAccount(accountId);
+            String destination = intent.getStringExtra("destination");
+            String message = intent.getStringExtra("message");
+            
+            account.sendInstantMessage(destination, message);
+            mEmitter.fireIntentHandled(intent);
+        } catch (Exception e) {
+            mEmitter.fireIntentHandled(intent, e);
+        }
+    }
+
+    private void handleSendTypingIndication(Intent intent) {
+        try {
+            int accountId = intent.getIntExtra("account_id", -1);
+            PjSipAccount account = findAccount(accountId);
+            String destination = intent.getStringExtra("destination");
+            boolean isTyping = intent.getBooleanExtra("isTyping", false);
+
+            account.sendTypingIndication(destination, isTyping);
+            mEmitter.fireIntentHandled(intent);
+        } catch (Exception e) {
+            mEmitter.fireIntentHandled(intent, e);
+        }
+    }
+
     private void handleCallHangup(Intent intent) {
         try {
             int callId = intent.getIntExtra("call_id", -1);
@@ -788,24 +834,25 @@ public class PjSipService extends Service {
     }
 
     /*
-    private void handleActivateAudioSession(Intent intent) {
-        try {
-            int callId = intent.getIntExtra("call_id", -1);
-
-            // -----
-            PjSipCall call = findCall(callId);
-            CallOpParam prm = new CallOpParam();
-            prm.setStatusCode(pjsip_status_code.PJSIP_SC_PROGRESS);
-            call.answer(prm);
-
-            // Automatically put other calls on hold.
-            //doPauseParallelCalls(call);
-
-            mEmitter.fireIntentHandled(intent);
-        } catch (Exception e) {
-            mEmitter.fireIntentHandled(intent, e);
-        }
-    }*/
+     * private void handleActivateAudioSession(Intent intent) {
+     * try {
+     * int callId = intent.getIntExtra("call_id", -1);
+     * 
+     * // -----
+     * PjSipCall call = findCall(callId);
+     * CallOpParam prm = new CallOpParam();
+     * prm.setStatusCode(pjsip_status_code.PJSIP_SC_PROGRESS);
+     * call.answer(prm);
+     * 
+     * // Automatically put other calls on hold.
+     * //doPauseParallelCalls(call);
+     * 
+     * mEmitter.fireIntentHandled(intent);
+     * } catch (Exception e) {
+     * mEmitter.fireIntentHandled(intent, e);
+     * }
+     * }
+     */
 
     private void handleCallProgress(Intent intent) {
         try {
@@ -818,7 +865,7 @@ public class PjSipService extends Service {
             call.answer(prm);
 
             // Automatically put other calls on hold.
-            //doPauseParallelCalls(call);
+            // doPauseParallelCalls(call);
 
             mEmitter.fireIntentHandled(intent);
         } catch (Exception e) {
@@ -841,7 +888,6 @@ public class PjSipService extends Service {
             mEmitter.fireIntentHandled(intent, e);
         }
     }
-
 
     private void handleCallSetOnHold(Intent intent) {
         try {
@@ -1025,7 +1071,7 @@ public class PjSipService extends Service {
             }
         }
 
-        throw new Exception("Account with specified \""+ id +"\" id not found");
+        throw new Exception("Account with specified \"" + id + "\" id not found");
     }
 
     private PjSipCall findCall(int id) throws Exception {
@@ -1035,7 +1081,7 @@ public class PjSipService extends Service {
             }
         }
 
-        throw new Exception("Call with specified \""+ id +"\" id not found");
+        throw new Exception("Call with specified \"" + id + "\" id not found");
     }
 
     void emmitRegistrationChanged(PjSipAccount account, OnRegStateParam prm) {
@@ -1046,53 +1092,64 @@ public class PjSipService extends Service {
         getEmitter().fireMessageReceivedEvent(message);
     }
 
+    void emmitTypingIndication(PjSipAccount account, PjSipTypingIndication indication) {
+        getEmitter().fireTypingIndicationReceivedEvent(indication);
+    }
+
+    void emmitInstantMessageStatus(PjSipAccount account, PjSipInstantMessageStatus status) {
+        getEmitter().fireInstantMessageStatusReceivedEvent(status);
+    }
+
     void emmitCallReceived(PjSipAccount account, PjSipCall call) {
         // Automatically decline incoming call when user uses GSM
         /*
-        if (!mGSMIdle) {
-            try {
-                call.hangup(new CallOpParam(true));
-            } catch (Exception e) {
-                Log.w(TAG, "Failed to decline incoming call when user uses GSM", e);
-            }
-
-            return;
-        }*/
+         * if (!mGSMIdle) {
+         * try {
+         * call.hangup(new CallOpParam(true));
+         * } catch (Exception e) {
+         * Log.w(TAG, "Failed to decline incoming call when user uses GSM", e);
+         * }
+         * 
+         * return;
+         * }
+         */
 
         /**
-        // Automatically start application when incoming call received.
-        if (mAppHidden) {
-            try {
-                String ns = getApplicationContext().getPackageName();
-                String cls = ns + ".MainActivity";
-
-                Intent intent = new Intent(getApplicationContext(), Class.forName(cls));
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.EXTRA_DOCK_STATE_CAR);
-                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                intent.putExtra("foreground", true);
-
-                startActivity(intent);
-            } catch (Exception e) {
-                Log.w(TAG, "Failed to open application on received call", e);
-            }
-        }
-
-        job(new Runnable() {
-            @Override
-            public void run() {
-                // Brighten screen at least 10 seconds
-                PowerManager.WakeLock wl = mPowerManager.newWakeLock(
-                    PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE | PowerManager.FULL_WAKE_LOCK,
-                    "incoming_call"
-                );
-                wl.acquire(10000);
-
-                if (mCalls.size() == 0) {
-                    mAudioManager.setSpeakerphoneOn(true);
-                }
-            }
-        });
-        **/
+         * // Automatically start application when incoming call received.
+         * if (mAppHidden) {
+         * try {
+         * String ns = getApplicationContext().getPackageName();
+         * String cls = ns + ".MainActivity";
+         * 
+         * Intent intent = new Intent(getApplicationContext(), Class.forName(cls));
+         * intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.EXTRA_DOCK_STATE_CAR);
+         * intent.addCategory(Intent.CATEGORY_LAUNCHER);
+         * intent.putExtra("foreground", true);
+         * 
+         * startActivity(intent);
+         * } catch (Exception e) {
+         * Log.w(TAG, "Failed to open application on received call", e);
+         * }
+         * }
+         * 
+         * job(new Runnable() {
+         * 
+         * @Override
+         *           public void run() {
+         *           // Brighten screen at least 10 seconds
+         *           PowerManager.WakeLock wl = mPowerManager.newWakeLock(
+         *           PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE
+         *           | PowerManager.FULL_WAKE_LOCK,
+         *           "incoming_call"
+         *           );
+         *           wl.acquire(10000);
+         * 
+         *           if (mCalls.size() == 0) {
+         *           mAudioManager.setSpeakerphoneOn(true);
+         *           }
+         *           }
+         *           });
+         **/
 
         // -----
         mCalls.add(call);
@@ -1128,14 +1185,16 @@ public class PjSipService extends Service {
                     }
 
                     // Ensure that ringing sound is stopped
-                    if (callState != pjsip_inv_state.PJSIP_INV_STATE_INCOMING && !mUseSpeaker && mAudioManager.isSpeakerphoneOn()) {
+                    if (callState != pjsip_inv_state.PJSIP_INV_STATE_INCOMING && !mUseSpeaker
+                            && mAudioManager.isSpeakerphoneOn()) {
                         mAudioManager.setSpeakerphoneOn(false);
                     }
 
                     // Acquire wifi lock
                     mWifiLock.acquire();
 
-                    if (callState == pjsip_inv_state.PJSIP_INV_STATE_EARLY || callState == pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED) {
+                    if (callState == pjsip_inv_state.PJSIP_INV_STATE_EARLY
+                            || callState == pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED) {
                         mAudioManager.setMode(AudioManager.MODE_IN_CALL);
                     }
                 }
@@ -1201,40 +1260,46 @@ public class PjSipService extends Service {
     /**
      * Pauses all calls, used when received GSM call.
      */
-    
+
     /*
-    private void doPauseAllCalls() {
-        for (PjSipCall call : mCalls) {
-            try {
-                call.hold();
-            } catch (Exception e) {
-                Log.w(TAG, "Failed to put call on hold", e);
-            }
-        }
-    }*/
+     * private void doPauseAllCalls() {
+     * for (PjSipCall call : mCalls) {
+     * try {
+     * call.hold();
+     * } catch (Exception e) {
+     * Log.w(TAG, "Failed to put call on hold", e);
+     * }
+     * }
+     * }
+     */
 
     protected class PhoneStateChangedReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             /*
-            final String extraState = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-
-            if (TelephonyManager.EXTRA_STATE_RINGING.equals(extraState) || TelephonyManager.EXTRA_STATE_OFFHOOK.equals(extraState)) {
-                Log.d(TAG, "GSM call received, pause all SIP calls and do not accept incoming SIP calls.");
-
-                mGSMIdle = false;
-
-                job(new Runnable() {
-                    @Override
-                    public void run() {
-                        doPauseAllCalls();
-                    }
-                });
-            } else if (TelephonyManager.EXTRA_STATE_IDLE.equals(extraState)) {
-                Log.d(TAG, "GSM call released, allow to accept incoming calls.");
-                mGSMIdle = true;
-            }
-            */
+             * final String extraState =
+             * intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+             * 
+             * if (TelephonyManager.EXTRA_STATE_RINGING.equals(extraState) ||
+             * TelephonyManager.EXTRA_STATE_OFFHOOK.equals(extraState)) {
+             * Log.d(TAG,
+             * "GSM call received, pause all SIP calls and do not accept incoming SIP calls."
+             * );
+             * 
+             * mGSMIdle = false;
+             * 
+             * job(new Runnable() {
+             * 
+             * @Override
+             * public void run() {
+             * doPauseAllCalls();
+             * }
+             * });
+             * } else if (TelephonyManager.EXTRA_STATE_IDLE.equals(extraState)) {
+             * Log.d(TAG, "GSM call released, allow to accept incoming calls.");
+             * mGSMIdle = true;
+             * }
+             */
         }
     }
 }

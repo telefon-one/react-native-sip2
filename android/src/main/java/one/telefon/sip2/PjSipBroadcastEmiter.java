@@ -97,6 +97,22 @@ public class PjSipBroadcastEmiter {
         context.sendBroadcast(intent);
     }
 
+    public void fireTypingIndicationReceivedEvent(PjSipTypingIndication indication) {
+        Intent intent = new Intent();
+        intent.setAction(PjActions.EVENT_TYPING_INDICATION_RECEIVED);
+        intent.putExtra("data", indication.toJsonString());
+
+        context.sendBroadcast(intent);
+    }
+
+    public void fireInstantMessageStatusReceivedEvent(PjSipInstantMessageStatus status) {
+        Intent intent = new Intent();
+        intent.setAction(PjActions.EVENT_MESSAGE_STATUS_RECEIVED);
+        intent.putExtra("data", status.toJsonString());
+
+        context.sendBroadcast(intent);
+    }
+
     public void fireCallReceivedEvent(PjSipCall call) {
         Intent intent = new Intent();
         intent.setAction(PjActions.EVENT_CALL_RECEIVED);

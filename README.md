@@ -23,9 +23,9 @@ compatible with RN 0.60+ (iOS and AndroidX)
 ## To do
 
  - [x] Send SIP Messages (IM) iOS
- - [ ] Send SIP Messages (IM) Android
+ - [x] Send SIP Messages (IM) Android
  -  [x] isTyping iOS
- - [ ] isTyping Android
+ - [x] isTyping Android
 
 ## Installation
 
@@ -55,7 +55,10 @@ endpoint.on("connectivity_changed", (online) => {});
 endpoint.on("call_received", (call) => {});
 endpoint.on("call_changed", (call) => {});
 endpoint.on("call_terminated", (call) => {});
+endpoint.on("message_received", (message) => {});
 endpoint.on("call_screen_locked", (call) => {}); // Android only
+endpoint.on('typing_indication_received', (indication) => {}); // Android only
+endpoint.on('message_status_received', (status) => {}); // Android only
 ```
 
 Account creating is pretty strainghforward.

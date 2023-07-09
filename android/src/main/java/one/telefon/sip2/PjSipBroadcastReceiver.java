@@ -48,6 +48,8 @@ public class PjSipBroadcastReceiver extends BroadcastReceiver {
         filter.addAction(PjActions.EVENT_CALL_TERMINATED);
         filter.addAction(PjActions.EVENT_CALL_SCREEN_LOCKED);
         filter.addAction(PjActions.EVENT_MESSAGE_RECEIVED);
+        filter.addAction(PjActions.EVENT_TYPING_INDICATION_RECEIVED);
+        filter.addAction(PjActions.EVENT_MESSAGE_STATUS_RECEIVED);
         filter.addAction(PjActions.EVENT_HANDLED);
 
         return filter;
@@ -57,7 +59,8 @@ public class PjSipBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
 
-        Log.d(TAG, "Received \""+ action +"\" response from service (" + ArgumentUtils.dumpIntentExtraParameters(intent) + ")");
+        Log.d(TAG, "Received \"" + action + "\" response from service ("
+                + ArgumentUtils.dumpIntentExtraParameters(intent) + ")");
 
         switch (action) {
             case PjActions.EVENT_STARTED:
@@ -71,6 +74,12 @@ public class PjSipBroadcastReceiver extends BroadcastReceiver {
                 break;
             case PjActions.EVENT_MESSAGE_RECEIVED:
                 onMessageReceived(intent);
+                break;
+            case PjActions.EVENT_TYPING_INDICATION_RECEIVED:
+                onTypingIndicationReceived(intent);
+                break;
+            case PjActions.EVENT_MESSAGE_STATUS_RECEIVED:
+                onInstantMessageStatusReceived(intent);
                 break;
             case PjActions.EVENT_CALL_RECEIVED:
                 onCallReceived(intent);
@@ -100,6 +109,20 @@ public class PjSipBroadcastReceiver extends BroadcastReceiver {
         emit("pjSipMessageReceived", params);
     }
 
+    private void onTypingIndicationReceived(Intent intent) {
+        String json = intent.getStringExtra("data");
+        Object params = ArgumentUtils.fromJson(json);
+
+        emit("pjSipTypingIndicationReceived", params);
+    }
+
+    private void onInstantMessageStatusReceived(Intent intent) {
+        String json = intent.getStringExtra("data");
+        Object params = ArgumentUtils.fromJson(json);
+
+        emit("pjSipMessageStatusReceived", params);
+    }
+
     private void onCallReceived(Intent intent) {
         String json = intent.getStringExtra("data");
         Object params = ArgumentUtils.fromJson(json);
@@ -127,7 +150,7 @@ public class PjSipBroadcastReceiver extends BroadcastReceiver {
             if (callbacks.containsKey(id)) {
                 callback = callbacks.remove(id);
             } else {
-                Log.w(TAG, "Callback with \""+ id +"\" identifier not found (\""+ intent.getAction() +"\")");
+                Log.w(TAG, "Callback with \"" + id + "\" identifier not found (\"" + intent.getAction() + "\")");
             }
         }
 

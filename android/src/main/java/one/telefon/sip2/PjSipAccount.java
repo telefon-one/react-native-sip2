@@ -5,7 +5,11 @@ import org.json.JSONObject;
 import org.pjsip.pjsua2.Account;
 import org.pjsip.pjsua2.OnIncomingCallParam;
 import org.pjsip.pjsua2.OnInstantMessageParam;
+import org.pjsip.pjsua2.OnTypingIndicationParam;
+import org.pjsip.pjsua2.OnInstantMessageStatusParam;
 import org.pjsip.pjsua2.OnRegStateParam;
+import org.pjsip.pjsua2.SendInstantMessageParam;
+import org.pjsip.pjsua2.SendTypingIndicationParam;
 
 public class PjSipAccount extends Account {
 
@@ -70,6 +74,47 @@ public class PjSipAccount extends Account {
         service.emmitMessageReceived(this, message);
     }
 
+    @Override
+    public void onTypingIndication(OnTypingIndicationParam prm) {
+        PjSipTypingIndication indication = new PjSipTypingIndication(this, prm);
+        service.emmitTypingIndication(this, indication);
+    }
+
+    @Override
+    public void onInstantMessageStatus(OnInstantMessageStatusParam prm) {
+        PjSipInstantMessageStatus status = new PjSipInstantMessageStatus(this, prm);
+        service.emmitInstantMessageStatus(this, status);
+    }
+    
+    public void sendInstantMessage(String destination, String message) {
+        try {
+            SendInstantMessageParam prm = new SendInstantMessageParam();
+            prm.setContentType("text/plain");
+            prm.setContent(message);
+
+            PjSipBuddy buddy = new PjSipBuddy(this, destination);
+            buddy.sendInstantMessage(prm);
+            buddy.delete();
+            prm.delete();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void sendTypingIndication(String destination, boolean isTyping) {
+        try {
+            SendTypingIndicationParam prm = new SendTypingIndicationParam();
+            prm.setIsTyping(isTyping);
+
+            PjSipBuddy buddy = new PjSipBuddy(this, destination);
+            buddy.sendTypingIndication(prm);
+            buddy.delete();
+            prm.delete();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
 
@@ -92,7 +137,9 @@ public class PjSipAccount extends Account {
             json.put("contactParams", configuration.getContactParams());
             json.put("contactUriParams", configuration.getContactUriParams());
 
-            json.put("regServer", configuration.getRegServer());
+                    
+            json.put("regServer", 
+                    configuration.getRegServer());
             json.put("regTimeout", configuration.isRegTimeoutNotEmpty() ? String.valueOf(configuration.getRegTimeout()) : "");
             json.put("regContactParams", configuration.getRegContactParams());
             json.put("regHeaders", configuration.getRegHeaders());
