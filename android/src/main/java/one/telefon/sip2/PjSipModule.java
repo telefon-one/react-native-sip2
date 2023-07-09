@@ -12,7 +12,8 @@ public class PjSipModule extends ReactContextBaseJavaModule {
     public PjSipModule(ReactApplicationContext context) {
         super(context);
 
-        // Module could be started several times, but we have to register receiver only once.
+        // Module could be started several times, but we have to register receiver only
+        // once.
         if (receiver == null) {
             receiver = new PjSipBroadcastReceiver(context);
             this.getReactApplicationContext().registerReceiver(receiver, receiver.getFilter());
@@ -63,9 +64,11 @@ public class PjSipModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void makeCall(int accountId, String destination, ReadableMap callSettings, ReadableMap msgData,  Callback callback) {
+    public void makeCall(int accountId, String destination, ReadableMap callSettings, ReadableMap msgData,
+            Callback callback) {
         int callbackId = receiver.register(callback);
-        Intent intent = PjActions.createMakeCallIntent(callbackId, accountId, destination, callSettings, msgData, getReactApplicationContext());
+        Intent intent = PjActions.createMakeCallIntent(callbackId, accountId, destination, callSettings, msgData,
+                getReactApplicationContext());
         getReactApplicationContext().startService(intent);
     }
 
@@ -156,14 +159,16 @@ public class PjSipModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void xferReplacesCall(int callId, int destCallId, Callback callback) {
         int callbackId = receiver.register(callback);
-        Intent intent = PjActions.createXFerReplacesCallIntent(callbackId, callId, destCallId, getReactApplicationContext());
+        Intent intent = PjActions.createXFerReplacesCallIntent(callbackId, callId, destCallId,
+                getReactApplicationContext());
         getReactApplicationContext().startService(intent);
     }
 
     @ReactMethod
     public void redirectCall(int callId, String destination, Callback callback) {
         int callbackId = receiver.register(callback);
-        Intent intent = PjActions.createRedirectCallIntent(callbackId, callId, destination, getReactApplicationContext());
+        Intent intent = PjActions.createRedirectCallIntent(callbackId, callId, destination,
+                getReactApplicationContext());
         getReactApplicationContext().startService(intent);
     }
 
@@ -177,21 +182,38 @@ public class PjSipModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void changeCodecSettings(ReadableMap codecSettings, Callback callback) {
         int callbackId = receiver.register(callback);
-        Intent intent = PjActions.createChangeCodecSettingsIntent(callbackId, codecSettings, getReactApplicationContext());
+        Intent intent = PjActions.createChangeCodecSettingsIntent(callbackId, codecSettings,
+                getReactApplicationContext());
         getReactApplicationContext().startService(intent);
     }
 
+    @ReactMethod
+    public void sendMessage(int accountId, String destination, String message, Callback callback) {
+        int callbackId = receiver.register(callback);
+        Intent intent = PjActions.createSendMessageIntent(callbackId, accountId, destination, message,
+                getReactApplicationContext());
+        getReactApplicationContext().startService(intent);
+    }
 
+    @ReactMethod
+    public void imTyping(int accountId, String destination, boolean isTyping, Callback callback) {
+        int callbackId = receiver.register(callback);
+        Intent intent = PjActions.createImTypingIntent(callbackId, accountId, destination, isTyping,
+        getReactApplicationContext());
+
+        getReactApplicationContext().startService(intent);
+    }
 
     /*
-    RCT_EXPORT_METHOD(activateAudioSession: (RCTResponseSenderBlock) callback) {
-        pjsua_set_no_snd_dev();
-        pj_status_t status;
-        status = pjsua_set_snd_dev(PJMEDIA_AUD_DEFAULT_CAPTURE_DEV, PJMEDIA_AUD_DEFAULT_PLAYBACK_DEV);
-        if (status != PJ_SUCCESS) {
-            NSLog(@"Failed to active audio session");
-        }
-    }
-    */
+     * RCT_EXPORT_METHOD(activateAudioSession: (RCTResponseSenderBlock) callback) {
+     * pjsua_set_no_snd_dev();
+     * pj_status_t status;
+     * status = pjsua_set_snd_dev(PJMEDIA_AUD_DEFAULT_CAPTURE_DEV,
+     * PJMEDIA_AUD_DEFAULT_PLAYBACK_DEV);
+     * if (status != PJ_SUCCESS) {
+     * NSLog(@"Failed to active audio session");
+     * }
+     * }
+     */
 
 }

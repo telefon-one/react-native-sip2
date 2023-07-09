@@ -23,7 +23,7 @@ public class PjActions {
 
     public static final String ACTION_START = "start";
     public static final String ACTION_CREATE_ACCOUNT = "account_create";
-    public static final String ACTION_CHANGE_CODEC_SETTINGS= "change_codec_settings'";
+    public static final String ACTION_CHANGE_CODEC_SETTINGS = "change_codec_settings'";
     public static final String ACTION_REGISTER_ACCOUNT = "account_register";
     public static final String ACTION_DELETE_ACCOUNT = "account_delete";
     public static final String ACTION_MAKE_CALL = "call_make";
@@ -47,6 +47,9 @@ public class PjActions {
     public static final String ACTION_RINGING_CALL = "call_ringing";
     public static final String ACTION_PROGRESS_CALL = "call_progress";
 
+    public static final String ACTION_SEND_MESSAGE = "one.telefon.message.send";    
+    public static final String ACTION_SEND_TYPING_INDICATION = "one.telefon.typing.indication.send";
+
 
     public static final String EVENT_STARTED = "one.telefon.account.started";
     public static final String EVENT_ACCOUNT_CREATED = "one.telefon.account.created";
@@ -56,6 +59,8 @@ public class PjActions {
     public static final String EVENT_CALL_RECEIVED = "one.telefon.call.received";
     public static final String EVENT_CALL_SCREEN_LOCKED = "one.telefon.call.screen.locked";
     public static final String EVENT_MESSAGE_RECEIVED = "one.telefon.message.received";
+    public static final String EVENT_TYPING_INDICATION_RECEIVED = "one.telefon.typing.indication.received";
+    public static final String EVENT_MESSAGE_STATUS_RECEIVED = "one.telefon.instant.message.status.received";
     public static final String EVENT_HANDLED = "one.telefon.handled";
 
     public static Intent createStartIntent(int callbackId, ReadableMap configuration, Context context) {
@@ -68,7 +73,8 @@ public class PjActions {
         return intent;
     }
 
-    public static Intent createSetServiceConfigurationIntent(int callbackId, ReadableMap configuration, Context context) {
+    public static Intent createSetServiceConfigurationIntent(int callbackId, ReadableMap configuration,
+            Context context) {
         Intent intent = new Intent(context, PjSipService.class);
         intent.setAction(PjActions.ACTION_SET_SERVICE_CONFIGURATION);
         intent.putExtra("callback_id", callbackId);
@@ -107,7 +113,8 @@ public class PjActions {
         return intent;
     }
 
-    public static Intent createMakeCallIntent(int callbackId, int accountId, String destination, ReadableMap settings, ReadableMap message, Context context) {
+    public static Intent createMakeCallIntent(int callbackId, int accountId, String destination, ReadableMap settings,
+            ReadableMap message, Context context) {
         Intent intent = new Intent(context, PjSipService.class);
         intent.setAction(PjActions.ACTION_MAKE_CALL);
         intent.putExtra("callback_id", callbackId);
@@ -135,15 +142,16 @@ public class PjActions {
     }
 
     /*
-    public static Intent createActivateAudioSessionIntent(int callbackId, int callId, Context context) {
-        Intent intent = new Intent(context, PjSipService.class);
-        intent.setAction(PjActions.ACTION_ACTIVATEAUDIOSESSION_CALL);
-        intent.putExtra("callback_id", callbackId);
-        intent.putExtra("call_id", callId);
-
-        return intent;
-    }
-    */
+     * public static Intent createActivateAudioSessionIntent(int callbackId, int
+     * callId, Context context) {
+     * Intent intent = new Intent(context, PjSipService.class);
+     * intent.setAction(PjActions.ACTION_ACTIVATEAUDIOSESSION_CALL);
+     * intent.putExtra("callback_id", callbackId);
+     * intent.putExtra("call_id", callId);
+     * 
+     * return intent;
+     * }
+     */
 
     public static Intent createDeclineCallIntent(int callbackId, int callId, Context context) {
         Intent intent = new Intent(context, PjSipService.class);
@@ -245,7 +253,8 @@ public class PjActions {
         return intent;
     }
 
-    public static Intent createXFerReplacesCallIntent(int callbackId, int callId, int destinationCallId, Context context) {
+    public static Intent createXFerReplacesCallIntent(int callbackId, int callId, int destinationCallId,
+            Context context) {
         Intent intent = new Intent(context, PjSipService.class);
         intent.setAction(PjActions.ACTION_XFER_REPLACES_CALL);
         intent.putExtra("callback_id", callbackId);
@@ -285,6 +294,30 @@ public class PjActions {
         return intent;
     }
 
+    public static Intent createSendMessageIntent(int callbackId, int accountId, String destination, String message,
+            Context context) {
+        Intent intent = new Intent(context, PjSipService.class);
+        intent.setAction(PjActions.ACTION_SEND_MESSAGE);
+        intent.putExtra("callback_id", callbackId);
+        intent.putExtra("account_id", accountId);
+        intent.putExtra("destination", destination);
+        intent.putExtra("message", message);
+
+        return intent;
+    }
+
+    public static Intent createImTypingIntent(int callbackId, int accountId, String destination, boolean isTyping,
+            Context context) {
+        Intent intent = new Intent(context, PjSipService.class);
+        intent.setAction(PjActions.ACTION_SEND_TYPING_INDICATION);
+        intent.putExtra("callback_id", callbackId);
+        intent.putExtra("account_id", accountId);
+        intent.putExtra("destination", destination);
+        intent.putExtra("isTyping", isTyping);
+
+        return intent;
+    }
+
     private static void formatIntent(Intent intent, ReadableMap configuration) {
         if (configuration == null) {
             return;
@@ -311,7 +344,8 @@ public class PjActions {
                     intent.putExtra(key, (Serializable) formatMap(configuration.getMap(key)));
                     break;
                 default:
-                    Log.w(TAG, "Unable to put extra information for intent: unknown type \""+ configuration.getType(key) +"\"");
+                    Log.w(TAG, "Unable to put extra information for intent: unknown type \""
+                            + configuration.getType(key) + "\"");
                     break;
             }
         }
@@ -344,7 +378,8 @@ public class PjActions {
                     value.put(mapKey, formatMap(map.getMap(mapKey)));
                     break;
                 default:
-                    Log.w(TAG, "Unable to put extra information for intent: unknown type \""+ map.getType(mapKey) +"\"");
+                    Log.w(TAG,
+                            "Unable to put extra information for intent: unknown type \"" + map.getType(mapKey) + "\"");
                     break;
             }
         }
